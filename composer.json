@@ -19,7 +19,8 @@
 			"ClinicaVeterinaria\\": "app/"
 		},
 		"files":[
-			"app/Helpers/DateHelper.php"
+			"app/Helpers/DateHelper.php",
+			"app/Helpers/FormatHelper.php"
 		]
 	},
 	"autoload-dev": {

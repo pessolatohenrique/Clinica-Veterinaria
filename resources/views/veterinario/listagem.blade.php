@@ -5,6 +5,9 @@
 @section("conteudo")
 <h1>Veterinários Cadastrados</h1>
 <p>Veterinários que trabalham nesta unidade da clínica</p>
+@if(old("nome"))
+	<p class="alert alert-success">Veterinário <strong>{{@old("nome")}}</strong> adicionado com sucesso!</p>
+@endif
 @if(empty($veterinarios))
 	<p class="alert alert-info">Nenhum veterinário encontrado. Refaça a sua busca!</p>
 @else
