@@ -15,3 +15,5 @@ Route::get('/veterinario','VeterinarioController@lista');
 Route::get('/veterinario/consulta/{id}','VeterinarioController@consulta')->where('id', '[0-9]+');
 Route::get('/veterinario/novo','VeterinarioController@formulario');
 Route::post('/veterinario/adiciona','VeterinarioController@adiciona');
+Route::post('/veterinario/apaga','VeterinarioController@exclui');
+Route::post('/veterinario/atualiza','VeterinarioController@atualiza');

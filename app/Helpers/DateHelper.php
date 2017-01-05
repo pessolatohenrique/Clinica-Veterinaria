@@ -1,7 +1,9 @@
 <?php
 function convertDateToBrazilian($data){
-	return date("d/m/Y");
+	$split = explode("-",$data);
+	return $split[2]."/".$split[1]."/".$split[0];
 }
 function convertDateToAmerican($data){
-	return date("Y-m-d");
+	$split = explode("/",$data);
+	return $split[2]."-".$split[1]."-".$split[0];
 }
