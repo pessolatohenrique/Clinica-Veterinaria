@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\DB;
 use Request;
 use ClinicaVeterinaria\Veterinario;
 use ClinicaVeterinaria\Especialidade;
+use ClinicaVeterinaria\Http\Requests\VeterinarioRequest;
 use ClinicaVeterinaria\Login;
 class VeterinarioController extends Controller {
 	public function lista(){
@@ -27,8 +28,8 @@ class VeterinarioController extends Controller {
 		$dados = array("especialidades" => $especialidades);
 		return view("veterinario/formulario")->with($dados);
 	}
-	public function adiciona(){
-		$parametros = Request::all();
+	public function adiciona(VeterinarioRequest $request){
+		$parametros = $request->all();
 		/*insere um veterinário no banco de dados*/
 		$parametros['cpf'] = documentToDataBase($parametros['cpf']);
 		$parametros['crmv'] = documentToDataBase($parametros['crmv']);
@@ -38,12 +39,12 @@ class VeterinarioController extends Controller {
 		$veterinarioObj = new Veterinario($parametros);
 		$veterinarioObj->save();
 		/*insere um login para veterinário no banco de dados*/
-		$parametros_login = Request::only("login","senha");
+		$parametros_login = $request->only("login","senha");
 		$parametros_login["perfil_id"] = $veterinarioObj->id;
 		$parametros_login['senha'] = MD5($parametros_login['senha']);
 		$parametros_login['cargo'] = 'VET';
 		Login::create($parametros_login);
-		return redirect("/veterinario")->withInput(Request::only("nome"));
+		return redirect("/veterinario")->withInput($request->only("nome"));
 	}
 	public function exclui(){
 		/*excluir veterinário e login*/
@@ -53,9 +54,9 @@ class VeterinarioController extends Controller {
 		$veterinarioObj->deleta($veterinario_id);
 		return redirect()->action("VeterinarioController@lista")->withInput(Request::only("veterinario_id"));
 	}
-	public function atualiza(){
-		$veterinario_id = Request::input("veterinario_id");
-		$parametros = Request::except("_token","veterinario_id");
+	public function atualiza(VeterinarioRequest $request){
+		$veterinario_id = $request->input("veterinario_id");
+		$parametros = $request->except("_token","veterinario_id");
 		$parametros['cpf'] = documentToDataBase($parametros['cpf']);
 		$parametros['crmv'] = documentToDataBase($parametros['crmv']);
 		$parametros['telefone'] = phoneToDataBase($parametros['telefone']);
