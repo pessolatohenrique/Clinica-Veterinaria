@@ -20,3 +20,5 @@ Route::post('/veterinario/atualiza','VeterinarioController@atualiza');
 Route::get('/login','LoginController@formulario');
 Route::post('/login','LoginController@autenticar');
 Route::get('/logout','LoginController@logout');
+Route::get('/secretaria/novo','SecretariaController@formulario');
+Route::post('/secretaria/adiciona','SecretariaController@adiciona');

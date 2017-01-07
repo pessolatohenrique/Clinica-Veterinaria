@@ -22,7 +22,7 @@
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		    	@if(Auth::guest())
-  					<li><a href="#"><span class="fa fa-sign-in"></span> Cadastre-se</a></li>
+  					<li><a href="/secretaria/novo"><span class="fa fa-sign-in"></span> Cadastre-se</a></li>
 					<li><a href="/login"><span class="fa fa-user"></span> Login</a></li>
 				@else
   					<li><a href="#"><span class="fa fa-user"></span> <strong>{{Auth::user()->name}}</strong></a></li>
