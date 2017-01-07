@@ -1,10 +1,12 @@
 <?php namespace ClinicaVeterinaria\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Request;
 use ClinicaVeterinaria\Veterinario;
 use ClinicaVeterinaria\Especialidade;
 use ClinicaVeterinaria\Http\Requests\VeterinarioRequest;
 use ClinicaVeterinaria\Login;
+
 class VeterinarioController extends Controller {
 	public function lista(){
 		$veterinarioObj = new Veterinario();
@@ -39,11 +41,14 @@ class VeterinarioController extends Controller {
 		$veterinarioObj = new Veterinario($parametros);
 		$veterinarioObj->save();
 		/*insere um login para veterinário no banco de dados*/
-		$parametros_login = $request->only("login","senha");
+		// $parametros_login = array();
+		$parametros_login["name"] = $request->input("login");
+		$parametros_login["email"] = $request->input("email");
 		$parametros_login["perfil_id"] = $veterinarioObj->id;
-		$parametros_login['senha'] = MD5($parametros_login['senha']);
+		$parametros_login['password'] = Hash::make($request->input("senha"));
 		$parametros_login['cargo'] = 'VET';
-		Login::create($parametros_login);
+		$loginObj = new Login();
+		$loginObj->adiciona($parametros_login);
 		return redirect("/veterinario")->withInput($request->only("nome"));
 	}
 	public function exclui(){

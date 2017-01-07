@@ -17,7 +17,8 @@ class Veterinario extends Model {
 		return $veterinario;
 	}
 	public function deleta($veterinario_id){
-		$query = DB::table("login")->where("perfil_id","=",$veterinario_id)->delete();
+		$query = DB::table("users")->where("perfil_id","=",$veterinario_id)
+		->where("cargo","=","VET")->delete();
 		$query = DB::table("veterinarios")->where("id","=",$veterinario_id)->delete();
 		return $query;
 	}
