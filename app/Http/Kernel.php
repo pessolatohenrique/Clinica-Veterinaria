@@ -15,7 +15,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'ClinicaVeterinaria\Http\Middleware\VerifyCsrfToken',
+		'ClinicaVeterinaria\Http\Middleware\VerifyCsrfToken'
 	];
 
 	/**
@@ -27,6 +27,9 @@ class Kernel extends HttpKernel {
 		'auth' => 'ClinicaVeterinaria\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'ClinicaVeterinaria\Http\Middleware\RedirectIfAuthenticated',
+		'autorizador' => 'ClinicaVeterinaria\Http\Middleware\Autorizador',
+		'autorizaSecretaria' => 'ClinicaVeterinaria\Http\Middleware\AutorizaSEC',
+		'autorizaVeterinario' => 'ClinicaVeterinaria\Http\Middleware\AutorizaVET'
 	];
 
 }

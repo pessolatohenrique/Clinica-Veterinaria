@@ -2,12 +2,17 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Request;
+use Validator;
 use ClinicaVeterinaria\Veterinario;
 use ClinicaVeterinaria\Especialidade;
 use ClinicaVeterinaria\Http\Requests\VeterinarioRequest;
 use ClinicaVeterinaria\Login;
 
 class VeterinarioController extends Controller {
+	public function __construct(){
+		$this->middleware('autorizaSecretaria');
+		// $this->middleware('autorizacaoMiddleware',['only' => ['novo','adiciona','remove']]);
+	}
 	public function lista(){
 		$veterinarioObj = new Veterinario();
 		$veterinarios = $veterinarioObj->lista();

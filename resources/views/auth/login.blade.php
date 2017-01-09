@@ -10,6 +10,11 @@ Clínica Veterinária | Login
 	@if(old("deslogou"))
 		<p class="alert alert-success">Usuário deslogado com sucesso!</p>
 	@endif
+	@if(Session::has('msgAutorizacao'))
+		<div class="alert alert-danger">
+			{{Session::get('msgAutorizacao')}}
+		</div>
+	@endif
 	<form action="/login" method="POST">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="form-group">
