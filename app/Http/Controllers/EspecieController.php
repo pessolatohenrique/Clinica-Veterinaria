@@ -53,4 +53,18 @@ class EspecieController extends Controller {
 		Session::flash('msgExcluido', "A espécie foi excluída com sucesso!");
 		return redirect()->action("EspecieController@lista");
 	}
+	public function consultaViaForm(Request $request){
+		$especie_id = $request->input("especie_id");
+		$especieObj = new Especie();
+		$especie = $especieObj->consulta($especie_id);
+		$dados = array("especie" => $especie,"tipo_animais" => $especieObj->listaTipoAnimal());
+		return view("especies/formulario")->with($dados);
+	}
+	public function atualiza(EspecieRequest $request){
+		$especie_id = $request->input("especie_id");
+		$parametros = $request->except("_token","especie_id");
+		$especieObj = new Especie();
+		$especieObj->atualiza($especie_id,$parametros);
+		return redirect()->action("EspecieController@lista")->withInput($especieObj->nome);
+	}
 }

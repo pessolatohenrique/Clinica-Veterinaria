@@ -30,3 +30,4 @@ Route::get('/especie/{id}','EspecieController@consulta')->where('id', '[0-9]+');
 Route::post('/especie','EspecieController@lista');
 Route::post('/especie/apaga','EspecieController@exclui');
 Route::post('/especie/consultaForm','EspecieController@consultaViaForm');
+Route::post('/especie/atualiza','EspecieController@atualiza');

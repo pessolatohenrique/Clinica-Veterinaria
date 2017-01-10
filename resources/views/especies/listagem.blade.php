@@ -10,7 +10,7 @@
 	</p>
 	@if(old("nome"))
 		<div class="alert alert-success">
-			Espécie <strong>{{old("nome")}}</strong> cadastrada com sucesso!
+			Espécie <strong>{{old("nome")}}</strong> cadastrada ou atualizada com sucesso!
 		</div>
 	@endif
 	@if(Session::has('msgExcluido'))
@@ -53,14 +53,14 @@
 							<form action="/especie/consultaForm" method="POST">
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<input type="hidden" name="especie_id" value="{{$esp->id}}">
-								<button type="submit" class="fa fa-pencil fa-2x btn btn-link" name="btn_excluir"></button>
+								<button type="submit" class="fa fa-pencil fa-2x btn btn-link icone" name="btn_excluir"></button>
 							</form>
 						</td>
 						<td>
 							<form action="/especie/apaga" method="POST">
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<input type="hidden" name="especie_id" value="{{$esp->id}}">
-								<button type="submit" class="fa fa-trash fa-2x btn btn-link" name="btn_excluir"></button>
+								<button type="submit" class="fa fa-trash fa-2x btn btn-link icone" name="btn_excluir"></button>
 							</form>
 						</td>
 					</tr>

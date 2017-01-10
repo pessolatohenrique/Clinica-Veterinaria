@@ -21,4 +21,8 @@ class Especie extends Model {
 	public function deleta($especie_id){
 		return DB::table("especies")->where("id",$especie_id)->delete();
 	}
+	public function atualiza($especie_id,$campos){
+		$query = DB::table("especies")->where("id",$especie_id)->update($campos);
+		return $query;
+	}
 }
