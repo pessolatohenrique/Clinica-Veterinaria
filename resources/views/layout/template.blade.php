@@ -11,11 +11,13 @@ endif;
 	<title>@yield("titulo")</title>
 	<link rel="stylesheet" type="text/css" href="/css/app.css">
 	<link rel="stylesheet" type="text/css" href="/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="/css/custom-theme/jquery-ui-1.9.2.custom.min.css">
 	<script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.mask.js"></script>
 	<script type="text/javascript" src="/js/geral.js"></script>
 	<script src="https://use.fontawesome.com/b17cc3a995.js"></script>
+	<script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -32,7 +34,7 @@ endif;
 					<ul class="dropdown-menu">
  						<li><a href="#">Animal</a></li>
   						<li><a href="#">Cliente</a></li>
-  						<li><a href="#">Espécie</a></li>
+  						<li><a href="{{action('EspecieController@formulario')}}">Espécie</a></li>
   						<li><a href="{{action('VeterinarioController@formulario')}}">Veterinário</a></li>
 					</ul>
 				</li>
@@ -40,8 +42,9 @@ endif;
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listar
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-  						<li><a href="#">Cliente</a></li>
-  						<li><a href="{{action('VeterinarioController@lista')}}">Veterinário</a></li>
+  						<li><a href="#">Clientes</a></li>
+  						<li><a href={{action('EspecieController@lista')}}>Espécies</a></li>
+  						<li><a href="{{action('VeterinarioController@lista')}}">Veterinários</a></li>
 					</ul>
 				</li>
   				<li class="dropdown">
