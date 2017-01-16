@@ -34,7 +34,7 @@ endif;
 					<ul class="dropdown-menu">
  						<li><a href="#">Animal</a></li>
   						<li><a href="#">Cliente</a></li>
-  						<li><a href="{{action('EspecieController@formulario')}}">Espécie</a></li>
+  						<li><a href="/especie/novo">Espécie</a></li>
   						<li><a href="{{action('VeterinarioController@formulario')}}">Veterinário</a></li>
 					</ul>
 				</li>
