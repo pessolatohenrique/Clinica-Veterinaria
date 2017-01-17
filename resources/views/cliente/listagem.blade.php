@@ -4,7 +4,11 @@
 @stop
 @section("conteudo")
 	<h1>Listagem de Clientes</h1>
-	<!-- Listagem de Clientes (campos: nome, cpf, email, telefone, celular, logradouro+numero,bairro,cidade+estado) -->
+	@if(old("nome"))
+		<div class="alert alert-success">
+			O cliente <strong>{{old("nome")}}</strong> foi adicionado com sucesso!
+		</div>
+	@endif
 	<table class="table table-bordered table-hover tabela-cliente">
 		<thead>
 			<tr>
