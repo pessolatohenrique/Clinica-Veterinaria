@@ -5,10 +5,9 @@ class Cliente extends Model {
 	public $timestamps = false;
 	protected $fillable = ['cpf','rg','nome','telefone','celular','email','endereco_id'];
 	public function lista(){
-		/*SELECT c.*, e.* FROM `clientes` c INNER JOIN enderecos e ON c.endereco_id = e.id ORDER BY c.nome ASC*/
 		$clientes = DB::table('clientes AS c')
 		->join("enderecos AS e","c.endereco_id","=","e.id")
-		->select("c.*","e.*")
+		->select("c.*","e.*","c.id AS cliente_id")
 		->orderBy("c.nome","ASC")
 		->get();
 		return $clientes;
@@ -22,5 +21,20 @@ class Cliente extends Model {
 			'estado' => $vetor['estado']
 		]);
 		return DB::select('SELECT LAST_INSERT_ID() AS endereco_id');
+	}
+	public function existeEndereco($vetor){
+		// SELECT * FROM `enderecos` WHERE cep = '09551200' AND numero = '291' AND complemento = 'Casa 4'
+		return DB::table("enderecos")->where("cep",$vetor["cep"])->where("numero",$vetor["numero"])->where("complemento",$vetor["complemento"])->first();
+	}
+	public function consulta($cliente_id){
+		$cliente = DB::table('clientes AS c')
+		->join("enderecos AS e","c.endereco_id","=","e.id")
+		->where("c.id","=",$cliente_id)
+		->select("c.*","e.*","c.id AS cliente_id")
+		->first();
+		return $cliente;
+	}
+	public function atualiza($cliente_id,$campos){
+		return DB::table("clientes")->where("id",$cliente_id)->update($campos);
 	}
 }

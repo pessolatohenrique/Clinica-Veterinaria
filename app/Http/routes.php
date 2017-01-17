@@ -33,4 +33,6 @@ Route::post('/especie/consultaForm','EspecieController@consultaViaForm');
 Route::post('/especie/atualiza','EspecieController@atualiza');
 Route::get('/cliente','ClienteController@lista');
 Route::get('/cliente/novo','ClienteController@formulario');
-Route::post('cliente/adiciona','ClienteController@adiciona');
+Route::post('/cliente/adiciona','ClienteController@adiciona');
+Route::get('/cliente/{id}','ClienteController@consulta')->where('id','[0-9]+');
+Route::post('/cliente/atualiza','ClienteController@atualiza');

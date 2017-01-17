@@ -34,4 +34,32 @@ class ClienteController extends Controller {
 		//redireciona para listagem
 		return redirect()->action("ClienteController@lista")->withInput($request->only("nome"));
 	}
+	public function consulta($cliente_id){
+		$clienteObj = new Cliente();
+		$clienteBusca = $clienteObj->consulta($cliente_id);
+		$dados = array("cliente" => $clienteBusca);
+		return view("cliente/formulario")->with($dados);
+	}
+	public function atualiza(ClienteRequest $request){
+		$clienteObj = new Cliente();
+		//atualiza dados do endereço
+		$campos_endereco = $request->only("cep","logradouro","numero","complemento","bairro","cidade","estado");
+		$existeEndereco = $clienteObj->existeEndereco($campos_endereco);
+		if($existeEndereco != NULL){
+			$endereco_id = $existeEndereco->id;
+		}else{
+			$vetor = $clienteObj->adicionaEndereco($campos_endereco);
+			$endereco_id = $vetor[0]->endereco_id;
+		}
+		//atualiza dados do cliente
+		$cliente_id = $request->only("cliente_id");		
+		$campos = $request->only("cpf","rg","nome","telefone","celular","email");
+		$campos["cpf"] = documentToDataBase($campos["cpf"]);
+		$campos["rg"] = documentToDataBase($campos["rg"]);
+		$campos["telefone"] = phoneToDataBase($campos["telefone"]);
+		$campos["celular"] = phoneToDataBase($campos["celular"]);
+		$campos["endereco_id"] = $endereco_id;
+		$clienteObj->atualiza($cliente_id,$campos);
+		return redirect()->action("ClienteController@lista")->withInput($request->only("nome"));
+	}
 }

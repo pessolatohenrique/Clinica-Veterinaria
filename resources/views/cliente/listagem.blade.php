@@ -6,7 +6,7 @@
 	<h1>Listagem de Clientes</h1>
 	@if(old("nome"))
 		<div class="alert alert-success">
-			O cliente <strong>{{old("nome")}}</strong> foi adicionado com sucesso!
+			O cliente <strong>{{old("nome")}}</strong> foi adicionado/atualizado com sucesso!
 		</div>
 	@endif
 	<table class="table table-bordered table-hover tabela-cliente">
@@ -25,7 +25,7 @@
 		<tbody>
 			@foreach($clientes as $cliente)
 				<tr>
-					<td>{{$cliente->nome}}</td>
+					<td><a href="/cliente/{{$cliente->cliente_id}}">{{$cliente->nome}}</a></td>
 					<td class="documento">{{$cliente->cpf}}</td>
 					<td>{{$cliente->email}}</td>
 					<td class="fone">{{$cliente->telefone}}</td>
