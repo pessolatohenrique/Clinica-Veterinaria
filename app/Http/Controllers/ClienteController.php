@@ -14,4 +14,10 @@ class ClienteController extends Controller {
 		$dados = array("clientes" => $clientes);
 		return view("cliente/listagem")->with($dados);
 	}
+	public function formulario(){
+		return view("cliente/formulario");
+	}
+	public function adiciona(){
+		
+	}
 }

@@ -16,6 +16,7 @@ endif;
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.mask.js"></script>
 	<script type="text/javascript" src="/js/geral.js"></script>
+	<script type="text/javascript" src="/js/cep.js"></script>
 	<script src="https://use.fontawesome.com/b17cc3a995.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.js"></script>
 </head>
@@ -33,7 +34,7 @@ endif;
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
  						<li><a href="#">Animal</a></li>
-  						<li><a href="#">Cliente</a></li>
+  						<li><a href="/cliente/novo">Cliente</a></li>
   						<li><a href="/especie/novo">Espécie</a></li>
   						<li><a href="{{action('VeterinarioController@formulario')}}">Veterinário</a></li>
 					</ul>
