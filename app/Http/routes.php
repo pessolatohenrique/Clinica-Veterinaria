@@ -31,3 +31,4 @@ Route::post('/especie','EspecieController@lista');
 Route::post('/especie/apaga','EspecieController@exclui');
 Route::post('/especie/consultaForm','EspecieController@consultaViaForm');
 Route::post('/especie/atualiza','EspecieController@atualiza');
+Route::get('/cliente','ClienteController@lista');

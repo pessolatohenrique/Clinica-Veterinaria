@@ -42,7 +42,7 @@ endif;
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listar
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-  						<li><a href="#">Clientes</a></li>
+  						<li><a href="{{action('ClienteController@lista')}}">Clientes</a></li>
   						<li><a href={{action('EspecieController@lista')}}>Espécies</a></li>
   						<li><a href="{{action('VeterinarioController@lista')}}">Veterinários</a></li>
 					</ul>

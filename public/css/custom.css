@@ -5,3 +5,11 @@
 	width: 10%;
 	text-align: center;
 }
+.tabela-cliente tr > th:nth-child(2), .tabela-cliente tr > td:nth-child(2),
+.tabela-cliente tr > th:nth-child(4), .tabela-cliente tr > td:nth-child(4),
+.tabela-cliente tr > th:nth-child(5), .tabela-cliente tr > td:nth-child(5){
+	width: 11%;
+}
+.tabela-cliente tr > th,.tabela-cliente tr > td{
+	text-align: center;
+}
