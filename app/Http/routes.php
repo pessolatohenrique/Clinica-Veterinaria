@@ -38,3 +38,4 @@ Route::get('/cliente/{id}','ClienteController@consulta')->where('id','[0-9]+');
 Route::post('/cliente/atualiza','ClienteController@atualiza');
 Route::post('/animal/adiciona','AnimalController@adiciona');
 Route::post('/animal/apaga','AnimalController@exclui');
+Route::get('/cliente/pesquisa','ClienteController@formulario_pesquisa');

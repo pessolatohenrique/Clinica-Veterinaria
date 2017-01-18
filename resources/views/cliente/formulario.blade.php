@@ -19,7 +19,7 @@
 			{{Session::get('msgExcluido')}}
 		</div>
 	@endif
-	<form action="{{isset($cliente->id)?'/cliente/atualiza':'cliente/adiciona'}}" method="POST">
+	<form action="{{isset($cliente->id)?'/cliente/atualiza':'/cliente/adiciona'}}" method="POST">
 		<input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
 		<input type="hidden" id="cliente_id" name="cliente_id" value="{{isset($cliente->id)?$cliente->cliente_id:''}}">
 		<fieldset>

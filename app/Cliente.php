@@ -4,12 +4,31 @@ use Illuminate\Support\Facades\DB;
 class Cliente extends Model {
 	public $timestamps = false;
 	protected $fillable = ['cpf','rg','nome','telefone','celular','email','endereco_id'];
-	public function lista(){
+	public function lista($params){
+		/*
 		$clientes = DB::table('clientes AS c')
 		->join("enderecos AS e","c.endereco_id","=","e.id")
 		->select("c.*","e.*","c.id AS cliente_id")
 		->orderBy("c.nome","ASC")
 		->get();
+		return $clientes;*/
+		$query = "SELECT c.*,e.*,c.id AS cliente_id FROM clientes AS c
+		INNER JOIN enderecos AS e ON c.endereco_id = e.id";
+		//filtragem para pesquisa
+		$query = $query." WHERE c.nome <> ''";
+		if(isset($params["cpf"]) && $params["cpf"] != ""){
+			$params["cpf"] = documentToDataBase($params["cpf"]);
+			$query = $query." AND c.cpf = '{$params['cpf']}'";
+		}
+		if(isset($params["rg"]) && $params["rg"] != ""){
+			$params["rg"] = documentToDataBase($params["rg"]);
+			$query = $query." AND c.rg = '{$params['rg']}'";
+		}
+		if(isset($params["nome"]) && $params["nome"] != ""){
+			$query = $query." AND c.nome LIKE '%{$params['nome']}%'";
+		}
+		$query = $query." ORDER BY c.nome ASC";
+		$clientes = DB::select($query);
 		return $clientes;
 	}
 	public function adicionaEndereco($vetor){

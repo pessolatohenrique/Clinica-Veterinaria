@@ -51,7 +51,7 @@ endif;
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Pesquisar
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-  						<li><a href="#">Cliente</a></li>
+  						<li><a href="{{action('ClienteController@formulario_pesquisa')}}">Cliente</a></li>
   						<li><a href="#">Veterinário</a></li>
 					</ul>
 				</li>

@@ -11,9 +11,10 @@ class ClienteController extends Controller {
 	public function __construct(){
 		$this->middleware("autorizaSecretaria");
 	}
-	public function lista(){
+	public function lista(Request $request){
 		$clienteObj = new Cliente();
-		$clientes = $clienteObj->lista();
+		$params_pesquisa = $request->all();
+		$clientes = $clienteObj->lista($params_pesquisa);
 		$dados = array("clientes" => $clientes);
 		return view("cliente/listagem")->with($dados);
 	}
@@ -67,5 +68,9 @@ class ClienteController extends Controller {
 		$campos["endereco_id"] = $endereco_id;
 		$clienteObj->atualiza($cliente_id,$campos);
 		return redirect()->action("ClienteController@lista")->withInput($request->only("nome"));
+	}
+	/*carrega o formulário de pesquisa*/
+	public function formulario_pesquisa(){
+		return view("cliente/pesquisa");
 	}
 }
