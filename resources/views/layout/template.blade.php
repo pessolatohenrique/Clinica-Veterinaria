@@ -33,7 +33,6 @@ endif;
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Adicionar Novo
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
- 						<li><a href="#">Animal</a></li>
   						<li><a href="/cliente/novo">Cliente</a></li>
   						<li><a href="/especie/novo">Espécie</a></li>
   						<li><a href="{{action('VeterinarioController@formulario')}}">Veterinário</a></li>

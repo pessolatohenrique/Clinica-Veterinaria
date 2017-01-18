@@ -14,9 +14,14 @@
 		</div>
 	@endif
 	<h1>{{isset($cliente->id)?"Alterar Cliente - $cliente->nome":"Cadastrar Cliente"}}</h1>
+	@if(Session::has('msgExcluido'))
+		<div class="alert alert-success">
+			{{Session::get('msgExcluido')}}
+		</div>
+	@endif
 	<form action="{{isset($cliente->id)?'/cliente/atualiza':'cliente/adiciona'}}" method="POST">
-		<input type="hidden" name="_token" value="{{csrf_token()}}">
-		<input type="hidden" name="cliente_id" value="{{isset($cliente->id)?$cliente->cliente_id:''}}">
+		<input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
+		<input type="hidden" id="cliente_id" name="cliente_id" value="{{isset($cliente->id)?$cliente->cliente_id:''}}">
 		<fieldset>
 			<legend>Dados Pessoais</legend>
 			<div class="row">
@@ -119,4 +124,118 @@
 		<button type="submit" class="btn btn-primary">Salvar</button>
 		<button type="reset" class="btn btn-warning">Limpar</button>
 	</form>
+	@if(isset($cliente->id))
+	<fieldset style="margin-top:1em">
+		<legend>Animais que o cliente possui</legend>
+		@if(count($animais) > 0)
+			<table class="table table-bordered tabela-animal">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Tipo de Animal</th>
+						<th>Espécie</th>
+						<th>Peso(KG)</th>
+						<th>Altura(cm)</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($animais as $animal)
+						<tr>
+							<td>{{$animal->nome}}</td>
+							<td>{{$animal->tipo_descricao}}</td>
+							<td><a href="/especie/{{$animal->especie_id}}">{{$animal->especie_nome}}</a></td>
+							<td>{{$animal->peso}}</td>
+							<td>{{$animal->altura}}</td>
+							<td>
+								<form action="/animal/apaga" method="POST">
+									<input type="hidden" name="_token" value="{{csrf_token()}}">
+									<input type="hidden" name="cliente_id" value="{{$cliente->id}}">
+									<input type="hidden" name="animal_id" value="{{$animal->id}}">
+									<button type="submit" class="fa fa-trash fa-2x btn btn-link icone" name="btn_excluir">
+									</button>
+								</form>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		@else
+			<div class="alert alert-info">
+				Nenhum animal cadastrado para este cliente!
+			</div>
+		@endif
+	</fieldset>
+	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#adicionaAnimal">
+		Adicionar Animal
+	</button>
+	@endif
+	<!-- Modal/Dialog que permite adicionar um animal -->
+	<div id="adicionaAnimal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+	      		<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        	<h4 class="modal-title">Adicionar Animal</h4>
+		      	</div>
+		      	<div class="modal-body">
+		      		@if(isset($cliente->id))
+		        	<p>
+		        		Utilize o formulário abaixo para adicionar um Animal ao Cliente <strong>{{$cliente->nome}}</strong>.
+		        	</p>
+		        	@endif
+		        	<form>
+		        		<div class="row">
+		        			<div class="col-md-6">
+		        				<div class="form-group">
+		        					<label for="tipoAnimal_id">Tipo de Animal</label>
+		        					<select name="tipoAnimal_id" id="animal_tipo" class="form-control">
+		        						<option value="">Selecione</option>
+		        						@if(isset($tipos_animais))
+		        						@foreach($tipos_animais as $tipo)
+		        							<option value="{{$tipo->id}}">{{$tipo->descricao}}</option>
+		        						@endforeach
+		        						@endif
+		        					</select>
+		        				</div>
+		        			</div>
+		        			<div class="col-md-6">
+		        				<div class="form-group">
+		        					<label for="animal_especie">Espécie</label>
+		        					<select name="especie_id" id="animal_especie" class="form-control">
+		        						<option value="">Selecione</option>
+		        					</select>
+		        				</div>
+		        			</div>
+		        		</div>
+		        		<div class="row">
+		        			<div class="col-md-8">
+		        				<div class="form-group">
+		        					<label for="nome">Nome</label>
+		        					<input type="text" name="nome" id="animal_nome" class="form-control">
+		        				</div>
+		        			</div>
+		        			<div class="col-md-2">
+		        				<div class="form-group">
+		        					<label for="nome">Peso</label>
+		        					<input type="text" name="peso" id="animal_peso" class="form-control">
+		        				</div>
+		        			</div>
+		        			<div class="col-md-2">
+		        				<div class="form-group">
+		        					<label for="nome">Altura</label>
+		        					<input type="text" name="altura" id="animal_altura" class="form-control">
+		        				</div>
+		        			</div>
+		        		</div>
+		        	</form>
+		      	</div>
+		      	<div class="modal-footer">
+		      		<button type="button" class="btn btn-primary" id="adiciona_animal">Salvar</button>
+		        	<button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+		      	</div>
+		    </div>
+	  </div>
+	</div>
 @stop

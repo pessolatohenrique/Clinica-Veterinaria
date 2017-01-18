@@ -3,6 +3,8 @@ use ClinicaVeterinaria\Http\Requests;
 use ClinicaVeterinaria\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use ClinicaVeterinaria\Cliente;
+use ClinicaVeterinaria\Animal;
+use ClinicaVeterinaria\Especie;
 use ClinicaVeterinaria\Http\Requests\ClienteRequest;
 /*Controller responsável por métodos de um Cliente da Clínica*/
 class ClienteController extends Controller {
@@ -36,8 +38,12 @@ class ClienteController extends Controller {
 	}
 	public function consulta($cliente_id){
 		$clienteObj = new Cliente();
+		$animalObj  = new Animal();
+		$especieObj = new Especie();
 		$clienteBusca = $clienteObj->consulta($cliente_id);
-		$dados = array("cliente" => $clienteBusca);
+		$animais = $animalObj->lista($cliente_id);
+		$tipo_animais = $especieObj->listaTipoAnimal();
+		$dados = array("cliente" => $clienteBusca,"animais" => $animais,"tipos_animais" => $tipo_animais);
 		return view("cliente/formulario")->with($dados);
 	}
 	public function atualiza(ClienteRequest $request){
