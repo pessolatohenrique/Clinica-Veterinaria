@@ -73,4 +73,17 @@ class ClienteController extends Controller {
 	public function formulario_pesquisa(){
 		return view("cliente/pesquisa");
 	}
+	public function criaArquivoJSON(){
+		$clienteObj = new Cliente();
+		$clientes = $clienteObj->lista(array());
+		$header = array();
+		return response()->json($clientes,200,$header,JSON_UNESCAPED_UNICODE);
+	}
+	public function buscaPorCPF(Request $request){
+		$cpf = documentToDataBase($request->input("cpf"));
+		$clienteObj = new Cliente();
+		$clienteBusca = $clienteObj->buscaPorCPF($cpf);
+		$header = array();
+		return response()->json($clienteBusca,200,$header,JSON_UNESCAPED_UNICODE);
+	}
 }

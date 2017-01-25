@@ -27,7 +27,7 @@
 			<div class="col-md-8">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" name="nome" id="nome" class="form-control"
+					<input type="text" name="nome" id="nome_cliente_pesquisa" class="form-control"
 					value="">
 				</div>
 			</div>

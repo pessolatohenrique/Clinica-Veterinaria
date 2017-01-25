@@ -23,3 +23,6 @@
 .tabela-animal tr > th:nth-child(6),.tabela-animal tr > td:nth-child(6){
 	width: 5%;
 }
+.erro-campo{
+	border: 3px solid red;
+}

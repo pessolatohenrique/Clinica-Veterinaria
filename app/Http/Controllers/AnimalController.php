@@ -19,4 +19,11 @@ class AnimalController extends Controller {
 		Session::flash('msgExcluido', "O animal foi excluído com sucesso!");
 		return back();
 	}
+	public function criaArquivoJSON(Request $request){
+		$cliente_id = $request->input("cliente_id");
+		$animalObj = new Animal();
+		$animais = $animalObj->lista($cliente_id);
+		$header = array();
+		return response()->json($animais,200,$header,JSON_UNESCAPED_UNICODE);
+	}
 }

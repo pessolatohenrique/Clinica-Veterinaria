@@ -79,6 +79,68 @@ function adicionaTabelaAnimal(vetor){
 	coluna = coluna + "</tr>";
 	$(".tabela-animal").append(coluna);
 }
+/*lista todos os clientes cadastrados em formato JSON*/
+function listaClientes(){
+	$.ajax({
+		url: '/cliente/json',
+		dataType: 'json',
+		method: 'GET',
+		success: function(data){
+			var vetClientes = [];
+			$.each(data,function(indice,valor){
+				vetClientes.push(valor.nome);
+			});
+			setAutoComplete("nome_cliente_pesquisa",vetClientes);
+		},error:function(){
+			alert("Erro ao buscar clientes. Contate o desenvolvedor!");
+		}
+	});
+}
+function preencheComboAnimais(vetor){
+	$("#animais_consulta_medica").find("option").remove();
+	$.each(vetor,function(key,val){
+		var texto = val.nome + " ("+val.especie_nome+","+val.tipo_descricao+")";
+		$("#animais_consulta_medica").append($("<option>").attr("value",val.id).text(texto));
+	});
+}
+function listaAnimais(cliente_id){
+	$.ajax({
+		url: "/animal/json",
+		data: {"cliente_id":cliente_id},
+		method: "GET",
+		dataType: "json",
+		success: function(data){
+			preencheComboAnimais(data);
+		},error:function(){
+			alert("Erro ao buscar animais. Contate o desenvolvedor!");
+		}
+	});
+}
+function preencheNomeCliente(vetor){
+	if(vetor.nome === undefined){
+		$("#cliente_consulta_medica").addClass("erro-campo");
+		$("#cliente_consulta_medica").val("");
+		$("#animais_consulta_medica").find("option").remove();
+		$("#animais_consulta_medica").append($("<option>").attr("value","").text("Selecione"));
+	}else{
+		$("#cliente_consulta_medica").removeClass("erro-campo");
+		$("#cliente_consulta_medica").val(vetor.nome);
+		listaAnimais(vetor.id);
+	}
+}
+function buscaPorCPF(cpf,metodo){
+	$.ajax({
+		url: "/cliente/buscaPorCPF",
+		dataType: 'json',
+		method: 'GET',
+		data: {"cpf":cpf},
+		success: function(data){
+			preencheNomeCliente(data);
+		},error:function(){
+			alert("Erro ao buscar por CPF. Contate o desenvolvedor!");
+		}
+	});
+}
 $(document).ready(function(){
 	$(".fone").mask("(00) 0000-0000");
 	$(".celular").mask("(00) 00000-0000");
@@ -109,5 +171,12 @@ $(document).ready(function(){
 		vetor_animal["altura"] = $("#animal_altura").val();
 		adicionaAnimal(vetor_animal);
 		$('#adicionaAnimal').modal('toggle');
+	});
+	$("#nome_cliente_pesquisa").on("focus",function(event){
+		listaClientes();
+	});
+	$("#cpf_consulta_medica").on("blur",function(){
+		var cpf = $(this).val();
+		buscaPorCPF(cpf);
 	});
 });

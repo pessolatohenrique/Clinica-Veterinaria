@@ -55,8 +55,8 @@ endif;
   						<li><a href="#">Veterinário</a></li>
 					</ul>
 				</li>
-  				<li><a href="#">Marcar Consulta</a></li>
-  				<li><a href="#">Visualizar Consultas</a></li>
+  				<li><a href="{{action('ConsultaMedicaController@formulario')}}">Marcar Consulta</a></li>
+  				<li><a href="{{action('ConsultaMedicaController@lista')}}">Visualizar Consultas</a></li>
   				@endif
   				@if($usuario == "VET")
   				<li class="dropdown">

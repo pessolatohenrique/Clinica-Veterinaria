@@ -56,4 +56,7 @@ class Cliente extends Model {
 	public function atualiza($cliente_id,$campos){
 		return DB::table("clientes")->where("id",$cliente_id)->update($campos);
 	}
+	public function buscaPorCPF($cpf){
+		return DB::table("clientes")->where("cpf",$cpf)->first();
+	}
 }
