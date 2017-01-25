@@ -5,6 +5,11 @@
 @section("conteudo")
 	<h1>Consultas Marcadas</h1>
 	<p>Consultas médicas a serem realizadas</p>
+	@if(Session::has('msgSucesso'))
+		<div class="alert alert-success">
+			{{Session::get('msgSucesso')}}
+		</div>
+	@endif
 	<table class="table table-bordered tabela-consulta-medica">
 		<thead>
 			<tr>

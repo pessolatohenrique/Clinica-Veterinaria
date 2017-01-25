@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use ClinicaVeterinaria\ConsultaMedica;
 use ClinicaVeterinaria\Veterinario;
 use ClinicaVeterinaria\Http\Requests\ConsultaMedicaRequest;
+use Session;
 /*Controller responsável por consultas médicas, marcadas pela secretária*/
 class ConsultaMedicaController extends Controller {
 	public function __construct(){
@@ -21,6 +22,11 @@ class ConsultaMedicaController extends Controller {
 		return view("consultaMedica/listagem");
 	}
 	public function adiciona(ConsultaMedicaRequest $request){
-		$request->all();
+		$parametros = $request->all();
+		$parametros["cpf"] = documentToDataBase($parametros["cpf"]);
+		$parametros["data"] = convertDateToAmerican($parametros["data"]);
+		ConsultaMedica::create($parametros);
+		Session::flash('msgSucesso', "A consulta foi marcada com sucesso!");
+		return redirect()->action('ConsultaMedicaController@lista');
 	}
 }
