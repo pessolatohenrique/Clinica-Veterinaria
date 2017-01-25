@@ -4,6 +4,7 @@ use ClinicaVeterinaria\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use ClinicaVeterinaria\ConsultaMedica;
 use ClinicaVeterinaria\Veterinario;
+use ClinicaVeterinaria\Http\Requests\ConsultaMedicaRequest;
 /*Controller responsável por consultas médicas, marcadas pela secretária*/
 class ConsultaMedicaController extends Controller {
 	public function __construct(){
@@ -19,7 +20,7 @@ class ConsultaMedicaController extends Controller {
 	public function lista(){
 		return view("consultaMedica/listagem");
 	}
-	public function adiciona(){
-
+	public function adiciona(ConsultaMedicaRequest $request){
+		$request->all();
 	}
 }
