@@ -20,6 +20,12 @@
 			{{Session::get('msgExcluiu')}}
 		</div>
 	@endif
+	@if(count($consultas_medicas) == 0)
+		<div class="alert alert-info">
+			Nenhuma consulta médica encontrada. Refaça a sua pesquisa!
+		</div>
+	@endif
+	@if(count($consultas_medicas) > 0)
 	<table class="table table-bordered tabela-consulta-medica">
 		<thead>
 			<tr>
@@ -76,4 +82,5 @@
 			@endforeach
 		</tbody>
 	</table>
+	@endif
 @stop
