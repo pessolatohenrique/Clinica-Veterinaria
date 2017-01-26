@@ -15,6 +15,11 @@
 			{{Session::get('msgAtualizou')}}
 		</div>
 	@endif
+	@if(Session::has('msgExcluiu'))
+		<div class="alert alert-success">
+			{{Session::get('msgExcluiu')}}
+		</div>
+	@endif
 	<table class="table table-bordered tabela-consulta-medica">
 		<thead>
 			<tr>

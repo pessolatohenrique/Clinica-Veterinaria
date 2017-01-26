@@ -48,4 +48,11 @@ class ConsultaMedicaController extends Controller {
 		Session::flash('msgAtualizou','A consulta foi atualizada com sucesso!');
 		return redirect()->action('ConsultaMedicaController@lista');
 	}
+	public function exclui(Request $request){
+		$consulta_id = $request->input("consulta_id");
+		$consultaObj = new ConsultaMedica();
+		$consultaObj->exclui($consulta_id);
+		Session::flash("msgExcluiu","A consulta foi desmarcada/excluídacom sucesso!");
+		return redirect()->action("ConsultaMedicaController@lista");
+	}
 }

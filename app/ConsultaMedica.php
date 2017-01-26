@@ -39,4 +39,7 @@ class ConsultaMedica extends Model {
 	public function atualiza($consulta_id,$campos){
 		return DB::table("consultas_medicas")->where("id",$consulta_id)->update($campos);
 	}
+	public function exclui($consulta_id){
+		return DB::table("consultas_medicas")->where("id",$consulta_id)->delete();
+	}
 }

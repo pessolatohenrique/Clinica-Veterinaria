@@ -47,3 +47,4 @@ Route::get('/cliente/buscaPorCPF','ClienteController@buscaPorCPF');
 Route::get('/animal/json','AnimalController@criaArquivoJSON');
 Route::post('/consultaMedica/consulta','ConsultaMedicaController@consulta');
 Route::post('/consultaMedica/atualiza','ConsultaMedicaController@atualiza');
+Route::post('/consultaMedica/apaga','ConsultaMedicaController@exclui');
