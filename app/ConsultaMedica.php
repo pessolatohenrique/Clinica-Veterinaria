@@ -23,4 +23,20 @@ class ConsultaMedica extends Model {
 		$consultasMedicas = DB::select($query);
 		return $consultasMedicas;
 	}
+	public function consulta($consulta_id){
+		$query = "SELECT cm.id,cm.data, cm.horario, DATEDIFF(cm.data,NOW()) AS dias_restantes, cm.motivo_id, m.motivo AS motivo_descricao, cm.veterinario_id, v.nome AS veterinario_nome, cm.observacao, cm.animal_id, a.nome AS animal_nome, a.especie_id, e.nome AS especie_nome, e.tipoAnimal_id, t.descricao AS tipo_animal_descricao, a.cliente_id, c.cpf AS cliente_cpf, c.nome AS cliente_nome, c.telefone, c.celular
+			FROM consultas_medicas cm
+			INNER JOIN motivos_consulta m ON cm.motivo_id = m.id 
+			INNER JOIN veterinarios v ON cm.veterinario_id = v.id
+			INNER JOIN animais a ON cm.animal_id = a.id
+			INNER JOIN especies e ON a.especie_id = e.id
+			INNER JOIN tipo_animais t ON e.tipoAnimal_id = t.id
+			INNER JOIN clientes c ON a.cliente_id = c.id
+			WHERE DATEDIFF(cm.data,NOW()) >= 0
+			AND cm.id = {$consulta_id}";
+		return DB::select($query);
+	}
+	public function atualiza($consulta_id,$campos){
+		return DB::table("consultas_medicas")->where("id",$consulta_id)->update($campos);
+	}
 }

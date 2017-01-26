@@ -179,4 +179,10 @@ $(document).ready(function(){
 		var cpf = $(this).val();
 		buscaPorCPF(cpf);
 	});
+	if($("h1").hasClass("altera_consulta_medica") && $("#cliente_consulta_medica").val() != ""){
+		var cliente_id = $("#cliente_id_consulta").val();
+		var animal_id = $("#animal_id_consulta").val();
+		var cmbAnimais = $("#animais_consulta_medica");
+		listaAnimais(cliente_id);
+	}
 });

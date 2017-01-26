@@ -10,6 +10,11 @@
 			{{Session::get('msgSucesso')}}
 		</div>
 	@endif
+	@if(Session::has('msgAtualizou'))
+		<div class="alert alert-success">
+			{{Session::get('msgAtualizou')}}
+		</div>
+	@endif
 	<table class="table table-bordered tabela-consulta-medica">
 		<thead>
 			<tr>
