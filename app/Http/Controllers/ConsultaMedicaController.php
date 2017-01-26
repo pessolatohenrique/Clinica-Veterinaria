@@ -17,9 +17,19 @@ class ConsultaMedicaController extends Controller {
 		$dados = array("motivos" => $consultaObj->listaMotivos(), "veterinarios" => $veterinarioObj->lista());
 		return view("consultaMedica/formulario")->with($dados);
 	}
-	public function lista(){
+	public function lista(Request $request){
 		$consultaObj = new ConsultaMedica();
-		$dados = array("consultas_medicas" => $consultaObj->lista());
+		$parametros = $request->all();
+		if(isset($parametros["dataInicial"]) && $parametros["dataInicial"] != ""){
+			$parametros["dataInicial"] = convertDateToAmerican($parametros["dataInicial"]);
+		}
+		if(isset($parametros["dataFinal"]) && $parametros["dataFinal"] != ""){
+			$parametros["dataFinal"] = convertDateToAmerican($parametros["dataFinal"]);
+		}
+		if(isset($parametros["cpf_pesquisa"])){
+			$parametros["cpf_pesquisa"] = documentToDataBase($parametros["cpf_pesquisa"]);
+		}
+		$dados = array("consultas_medicas" => $consultaObj->lista($parametros));
 		return view("consultaMedica/listagem")->with($dados);
 	}
 	public function adiciona(ConsultaMedicaRequest $request){
@@ -54,5 +64,10 @@ class ConsultaMedicaController extends Controller {
 		$consultaObj->exclui($consulta_id);
 		Session::flash("msgExcluiu","A consulta foi desmarcada/excluídacom sucesso!");
 		return redirect()->action("ConsultaMedicaController@lista");
+	}
+	public function formulario_pesquisa(){
+		$veterinarioObj = new Veterinario();
+		$dados = array("veterinarios" => $veterinarioObj->lista());
+		return view("consultaMedica/pesquisa")->with($dados);
 	}
 }

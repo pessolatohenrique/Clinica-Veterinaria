@@ -52,7 +52,8 @@ endif;
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
   						<li><a href="{{action('ClienteController@formulario_pesquisa')}}">Cliente</a></li>
-  						<li><a href="#">Veterinário</a></li>
+  						<li><a href="{{action('ConsultaMedicaController@formulario_pesquisa')}}">Consulta Médica</a></li>
+  						
 					</ul>
 				</li>
   				<li><a href="{{action('ConsultaMedicaController@formulario')}}">Marcar Consulta</a></li>
