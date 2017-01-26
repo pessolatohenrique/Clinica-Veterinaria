@@ -141,6 +141,16 @@ function buscaPorCPF(cpf,metodo){
 		}
 	});
 }
+/*colore as linhas da tabela cujo o dia da consulta é hoje ou amanhã*/
+function coloreLinhasConsulta(tabela){
+	var linhas = tabela.find("tr");
+	$.each(linhas,function(key,val){
+		var dias = $(val).find(".dias-restantes-consulta").text();
+		if(dias >= 0 && dias <= 1){
+			$(val).addClass("bg-danger");
+		}
+	});
+}
 $(document).ready(function(){
 	$(".fone").mask("(00) 0000-0000");
 	$(".celular").mask("(00) 00000-0000");
@@ -184,5 +194,9 @@ $(document).ready(function(){
 		var animal_id = $("#animal_id_consulta").val();
 		var cmbAnimais = $("#animais_consulta_medica");
 		listaAnimais(cliente_id);
+	}
+	if($("table").hasClass("tabela-consulta-medica")){
+		var tabela = $(".tabela-consulta-medica").find("tbody");
+		coloreLinhasConsulta(tabela);
 	}
 });

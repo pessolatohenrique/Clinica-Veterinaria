@@ -44,7 +44,7 @@
 			<tr class="text-center">
 				<td>{{convertDateToBrazilian($consulta->data)}}</td>
 				<td>{{substr($consulta->horario,0,5)}}</td>
-				<td>{{$consulta->dias_restantes}}</td>
+				<td class="dias-restantes-consulta">{{$consulta->dias_restantes}}</td>
 				<td>{{$consulta->motivo_descricao}}</td>
 				<td>
 					<a href="/veterinario/consulta/{{$consulta->veterinario_id}}">{{substr($consulta->veterinario_nome,0,21)}}</a>
