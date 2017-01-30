@@ -13,6 +13,16 @@
 			{{session('adicionou')}}
 		</div>
 	@endif
+	@if(session('atualizou'))
+		<div class="alert alert-success">
+			{{session('atualizou')}}
+		</div>
+	@endif
+	@if(session('excluiu'))
+		<div class="alert alert-success">
+			{{session('excluiu')}}
+		</div>
+	@endif
 	<table class="table table-bordered tabela-consultas-realizadas">
 		<thead>
 			<tr class="bg-info">

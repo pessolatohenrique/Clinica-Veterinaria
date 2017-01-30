@@ -20,6 +20,7 @@
 	<form action="{{isset($consulta_realizada->id)?action('HistoricoConsultaController@atualiza'):action('HistoricoConsultaController@adiciona')}}" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="veterinario_id" value="{{Auth::user()->id}}">
+		<input type="hidden" name="consulta_id" value="{{isset($consulta_realizada->id)?$consulta_realizada->id:''}}">
 		<input type="hidden" id="cliente_id_consulta" value="{{isset($consulta_realizada->id)?$consulta_realizada->cliente_id:''}}">
 		<fieldset>
 			<legend>Dados do Cliente</legend>

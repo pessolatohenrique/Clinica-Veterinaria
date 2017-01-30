@@ -35,10 +35,18 @@ class HistoricoConsultaController extends Controller {
 			"consulta_realizada" => $consulta_realizada[0]);
 		return view("historicoConsulta/formulario")->with($dados);
 	}
-	public function exclui(){
-
+	public function exclui(Request $request){
+		$consulta_id = $request->input("consulta_id");
+		$consultaObj = new HistoricoConsulta();
+		$consultaObj->deleta($consulta_id);
+		return redirect()->action("HistoricoConsultaController@lista")->with("excluiu","Consulta excluída com sucesso!");
 	}
-	public function atualiza(){
-		
+	public function atualiza(HistoricoConsultaRequest $request){
+		$campos = $request->except("_token","consulta_id","cpf");
+		$campos["data"] = convertDateToAmerican($campos["data"]);
+		$consulta_id = $request->input("consulta_id");
+		$consultaObj = new HistoricoConsulta();
+		$consultaObj->atualiza($consulta_id,$campos);
+		return redirect()->action("HistoricoConsultaController@lista")->with('atualizou','Consulta atualizada com sucesso!');
 	}
 }

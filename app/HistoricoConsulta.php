@@ -30,4 +30,10 @@ class HistoricoConsulta extends Model {
 			AND cv.id = {$consulta_id}";
 		return DB::select($query);
 	}
+	public function atualiza($consulta_id,$campos){
+		DB::table("consultas_veterinario")->where("id",$consulta_id)->update($campos);
+	}
+	public function deleta($consulta_id){
+		DB::table("consultas_veterinario")->where("id",$consulta_id)->delete();
+	}
 }
