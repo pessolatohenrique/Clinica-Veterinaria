@@ -1,6 +1,7 @@
 <?php namespace ClinicaVeterinaria\Http\Controllers;
 use Illuminate\Http\Request;
 use ClinicaVeterinaria\Cliente;
+use ClinicaVeterinaria\Animal;
 class HomeController extends Controller {
 
 	/*
@@ -39,5 +40,12 @@ class HomeController extends Controller {
 		$clienteBusca = $clienteObj->buscaPorCPF($cpf);
 		$header = array();
 		return response()->json($clienteBusca,200,$header,JSON_UNESCAPED_UNICODE);
+	}
+	public function criaArquivoJSON(Request $request){
+		$cliente_id = $request->input("cliente_id");
+		$animalObj = new Animal();
+		$animais = $animalObj->lista($cliente_id);
+		$header = array();
+		return response()->json($animais,200,$header,JSON_UNESCAPED_UNICODE);
 	}
 }

@@ -24,6 +24,8 @@
 				<th>Sintomas</th>
 				<th>Diagnóstico</th>
 				<th>Tratamento</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,6 +39,20 @@
 				<td>{{substr($consulta->sintomas,0,20)}}</td>
 				<td>{{$consulta->diagnostico}}</td>
 				<td>{{substr($consulta->tratamento,0,140)}}</td>
+				<td>
+					<form action="/historicoConsulta/consulta" method="POST">
+						<input type="hidden" name="_token" value="{{csrf_token()}}">
+						<input type="hidden" name="consulta_id" value="{{$consulta->id}}">
+						<button type="submit" class="fa fa-pencil fa-2x btn btn-link icone" name="btn_atualizar"></button>
+					</form>
+				</td>
+				<td>
+					<form action="/historicoConsulta/apaga" method="POST">
+						<input type="hidden" name="_token" value="{{csrf_token()}}">
+						<input type="hidden" name="consulta_id" value="{{$consulta->id}}">
+						<button type="submit" class="fa fa-trash fa-2x btn btn-link icone" name="btn_excluir"></button>
+					</form>
+				</td>
 				<input type="hidden" class="tratamento_encerrado" value="{{$consulta->tratamento_encerrado}}">
 			</tr>
 			@endforeach

@@ -44,7 +44,7 @@ Route::get('/consultaMedica/novo','ConsultaMedicaController@formulario');
 Route::get('/consultaMedica','ConsultaMedicaController@lista');
 Route::post('/consultaMedica/adiciona','ConsultaMedicaController@adiciona');
 Route::get('/cliente/buscaPorCPF','HomeController@buscaPorCPF');
-Route::get('/animal/json','AnimalController@criaArquivoJSON');
+Route::get('/animal/json','HomeController@criaArquivoJSON');
 Route::post('/consultaMedica/consulta','ConsultaMedicaController@consulta');
 Route::post('/consultaMedica/atualiza','ConsultaMedicaController@atualiza');
 Route::post('/consultaMedica/apaga','ConsultaMedicaController@exclui');
@@ -52,3 +52,6 @@ Route::get('/consultaMedica/pesquisa','ConsultaMedicaController@formulario_pesqu
 Route::get('/historicoConsulta','HistoricoConsultaController@lista');
 Route::get('/historicoConsulta/novo','HistoricoConsultaController@formulario');
 Route::post('/historicoConsulta/adiciona','HistoricoConsultaController@adiciona');
+Route::post('/historicoConsulta/consulta','HistoricoConsultaController@consulta');
+Route::post('/historicoConsulta/apaga','HistoricoConsultaController@exclui');
+Route::post('/historicoConsulta/atualiza','HistoricoConsultaController@atualiza');

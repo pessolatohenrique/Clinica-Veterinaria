@@ -27,4 +27,18 @@ class HistoricoConsultaController extends Controller {
 		HistoricoConsulta::create($campos);
 		return redirect()->action("HistoricoConsultaController@lista")->with('adicionou','Consulta adicionada com sucesso!');
 	}
+	public function consulta(Request $request){
+		$consulta_id = $request->input("consulta_id");
+		$consultaObj = new HistoricoConsulta();
+		$consulta_realizada = $consultaObj->consulta($consulta_id);
+		$dados = array("dataAtual" => date("d/m/Y"),
+			"consulta_realizada" => $consulta_realizada[0]);
+		return view("historicoConsulta/formulario")->with($dados);
+	}
+	public function exclui(){
+
+	}
+	public function atualiza(){
+		
+	}
 }
