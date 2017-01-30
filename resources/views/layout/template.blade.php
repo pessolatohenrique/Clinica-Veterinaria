@@ -64,8 +64,8 @@ endif;
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Histórico Consulta
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-  						<li><a href="#">Adicionar</a></li>
-  						<li><a href="#">Listar</a></li>
+  						<li><a href="{{action('HistoricoConsultaController@formulario')}}">Adicionar</a></li>
+  						<li><a href="{{action('HistoricoConsultaController@lista')}}">Listar</a></li>
   						<li><a href="#">Pesquisar</a></li>
 					</ul>
 				</li>

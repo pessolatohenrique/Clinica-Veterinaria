@@ -49,3 +49,5 @@ Route::post('/consultaMedica/consulta','ConsultaMedicaController@consulta');
 Route::post('/consultaMedica/atualiza','ConsultaMedicaController@atualiza');
 Route::post('/consultaMedica/apaga','ConsultaMedicaController@exclui');
 Route::get('/consultaMedica/pesquisa','ConsultaMedicaController@formulario_pesquisa');
+Route::get('/historicoConsulta','HistoricoConsultaController@lista');
+Route::get('/historicoConsulta/novo','HistoricoConsultaController@formulario');

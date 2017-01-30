@@ -1,7 +1,8 @@
 <?php namespace ClinicaVeterinaria\Http\Middleware;
 
 use Closure;
-
+use Auth;
+use Session;
 class AutorizaVET {
 
 	/**
