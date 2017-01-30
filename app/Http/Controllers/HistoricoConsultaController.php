@@ -12,4 +12,10 @@ class HistoricoConsultaController extends Controller {
 	public function lista(){
 		return view("historicoConsulta/listagem");
 	}
+	public function formulario(){
+		return view("historicoConsulta/formulario");
+	}
+	public function adiciona(){
+		
+	}
 }

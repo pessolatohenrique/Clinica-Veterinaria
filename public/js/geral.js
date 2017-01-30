@@ -151,7 +151,11 @@ function coloreLinhasConsulta(tabela){
 		}
 	});
 }
+function criaEditoresTexto(){
+bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+}
 $(document).ready(function(){
+	criaEditoresTexto();
 	$(".fone").mask("(00) 0000-0000");
 	$(".celular").mask("(00) 00000-0000");
 	$(".documento").mask("000.000.000-00");

@@ -1,5 +1,6 @@
 <?php namespace ClinicaVeterinaria\Http\Controllers;
-
+use Illuminate\Http\Request;
+use ClinicaVeterinaria\Cliente;
 class HomeController extends Controller {
 
 	/*
@@ -32,5 +33,11 @@ class HomeController extends Controller {
 	{
 		return view('home');
 	}
-
+	public function buscaPorCPF(Request $request){
+		$cpf = documentToDataBase($request->input("cpf"));
+		$clienteObj = new Cliente();
+		$clienteBusca = $clienteObj->buscaPorCPF($cpf);
+		$header = array();
+		return response()->json($clienteBusca,200,$header,JSON_UNESCAPED_UNICODE);
+	}
 }

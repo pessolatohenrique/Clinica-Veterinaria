@@ -13,6 +13,7 @@ endif;
 	<link rel="stylesheet" type="text/css" href="/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="/css/custom-theme/jquery-ui-1.9.2.custom.min.css">
 	<script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script>
+	<script type="text/javascript" src="/js/nicEdit.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.mask.js"></script>
 	<script type="text/javascript" src="/js/geral.js"></script>

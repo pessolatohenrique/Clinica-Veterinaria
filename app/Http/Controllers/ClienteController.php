@@ -12,6 +12,7 @@ class ClienteController extends Controller {
 		$this->middleware("autorizaSecretaria");
 	}
 	public function lista(Request $request){
+		$this->middleware("autorizaSecretaria");
 		$clienteObj = new Cliente();
 		$params_pesquisa = $request->all();
 		$clientes = $clienteObj->lista($params_pesquisa);
