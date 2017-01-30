@@ -9,14 +9,14 @@ class CriaTabelaConsultasVeterinario extends Migration {
 		// Criar tabela **consultas_veterinario**, com os campos: veterinario_id, animal_id, data, sintomas, diagnóstico, tratamento, tratamento_encerrado (boolean)
 		Schema::create("consultas_veterinario",function(Blueprint $table){
 			$table->increments("id");
-			$table->integer("veterinario_id");
+			$table->integer("veterinario_id")->unsigned();
 			$table->integer("animal_id")->unsigned();
 			$table->date("data");
 			$table->text("sintomas");
 			$table->text("diagnostico");
 			$table->text("tratamento");
 			$table->boolean("tratamento_encerrado");
-		    $table->foreign('veterinario_id')->references('id')->on('veterinarios');
+		    $table->foreign('veterinario_id')->references('id')->on('users');
 		    $table->foreign("animal_id")->references("id")->on("animais");
 		});
 	}

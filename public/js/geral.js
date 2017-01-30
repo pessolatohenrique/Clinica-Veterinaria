@@ -152,7 +152,7 @@ function coloreLinhasConsulta(tabela){
 	});
 }
 function criaEditoresTexto(){
-bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 }
 $(document).ready(function(){
 	criaEditoresTexto();

@@ -48,13 +48,6 @@ class ConsultaMedica extends Model {
 			$veterinario_id = $parametros["veterinario_pesquisa"];
 			$query = $query." AND cm.veterinario_id = {$veterinario_id}";
 		}
-		/*  'dataInicial' => string '2017-01-01' (length=10)
-  'dataFinal' => string '2017-01-26' (length=10)
-  'horaInicial' => string '10:00' (length=5)
-  'horaFinal' => string '18:00' (length=5)
-  'cpf_pesquisa' => string '44736599847' (length=11)
-  'nome_cliente_pesquisa' => string 'Henrique' (length=8)
-  'veterinario_pesquisa' => string '41' (length=2)*/
 		$query = $query." ORDER BY data ASC, horario ASC";
 		$consultasMedicas = DB::select($query);
 		return $consultasMedicas;
