@@ -50,7 +50,7 @@ Pesquisa de uma consulta por data inicial e data final, cliente, veterinário, f
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="nome_cliente_pesquisa">Cliente</label>
-						<input type="text" name="nome_cliente_pesquisa" class="form-control">
+						<input type="text" name="nome_cliente_pesquisa" id="nome_cliente_pesquisa" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-4">

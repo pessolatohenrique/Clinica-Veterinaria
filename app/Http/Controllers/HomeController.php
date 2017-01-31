@@ -48,4 +48,10 @@ class HomeController extends Controller {
 		$header = array();
 		return response()->json($animais,200,$header,JSON_UNESCAPED_UNICODE);
 	}
+	public function criaClientesJSON(){
+		$clienteObj = new Cliente();
+		$clientes = $clienteObj->lista(array());
+		$header = array();
+		return response()->json($clientes,200,$header,JSON_UNESCAPED_UNICODE);
+	}
 }

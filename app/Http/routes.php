@@ -39,7 +39,7 @@ Route::post('/cliente/atualiza','ClienteController@atualiza');
 Route::post('/animal/adiciona','AnimalController@adiciona');
 Route::post('/animal/apaga','AnimalController@exclui');
 Route::get('/cliente/pesquisa','ClienteController@formulario_pesquisa');
-Route::get('/cliente/json','ClienteController@criaArquivoJSON');
+Route::get('/cliente/json','HomeController@criaClientesJSON');
 Route::get('/consultaMedica/novo','ConsultaMedicaController@formulario');
 Route::get('/consultaMedica','ConsultaMedicaController@lista');
 Route::post('/consultaMedica/adiciona','ConsultaMedicaController@adiciona');

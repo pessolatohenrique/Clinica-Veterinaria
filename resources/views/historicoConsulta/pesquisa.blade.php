@@ -30,7 +30,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="nome_cliente">Nome do Cliente</label>
-						<input type="text" name="nome_cliente" class="form-control">
+						<input type="text" name="nome_cliente" id="nome_cliente_pesquisa" class="form-control">
 					</div>
 				</div>
 			</div>
