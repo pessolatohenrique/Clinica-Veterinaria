@@ -68,7 +68,7 @@ endif;
 					<ul class="dropdown-menu">
   						<li><a href="{{action('HistoricoConsultaController@formulario')}}">Adicionar</a></li>
   						<li><a href="{{action('HistoricoConsultaController@lista')}}">Listar</a></li>
-  						<li><a href="#">Pesquisar</a></li>
+  						<li><a href="{{action('HistoricoConsultaController@formulario_pesquisa')}}">Pesquisar</a></li>
 					</ul>
 				</li>
   				<li class="dropdown">

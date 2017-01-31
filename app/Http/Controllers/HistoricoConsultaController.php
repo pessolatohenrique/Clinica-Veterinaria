@@ -10,15 +10,19 @@ class HistoricoConsultaController extends Controller {
 	public function __construct(){
 		$this->middleware("autorizaVeterinario");
 	}
-	public function lista(){
+	public function lista(Request $request){
 		$usuario_id = Auth::user('id');
+		$parametros = $request->all();
 		$consultaObj = new HistoricoConsulta();
-		$dados = array("consultas_realizadas" => $consultaObj->lista($usuario_id));
+		$dados = array("consultas_realizadas" => $consultaObj->lista($usuario_id,$parametros));
 		return view("historicoConsulta/listagem")->with($dados);
 	}
 	public function formulario(){
 		$dados = array("dataAtual" => date("d/m/Y"));
 		return view("historicoConsulta/formulario")->with($dados);
+	}
+	public function formulario_pesquisa(){
+		return view("historicoConsulta/pesquisa");
 	}
 	public function adiciona(HistoricoConsultaRequest $request){
 		$campos = $request->all();

@@ -55,3 +55,4 @@ Route::post('/historicoConsulta/adiciona','HistoricoConsultaController@adiciona'
 Route::post('/historicoConsulta/consulta','HistoricoConsultaController@consulta');
 Route::post('/historicoConsulta/apaga','HistoricoConsultaController@exclui');
 Route::post('/historicoConsulta/atualiza','HistoricoConsultaController@atualiza');
+Route::get('/historicoConsulta/pesquisa','HistoricoConsultaController@formulario_pesquisa');
