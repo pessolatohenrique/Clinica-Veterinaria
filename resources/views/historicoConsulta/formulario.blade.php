@@ -96,4 +96,83 @@
 		<button type="submit" class="btn btn-primary">Salvar</button>
 		<button type="reset" class="btn btn-warning">Limpar</button>
 	</form>
+	<!-- Formulário e listagem de exames !-->
+	@if(isset($consulta_realizada->id))
+	<fieldset style="margin-top:1em">
+		<legend>Exames Solicitados</legend>
+		<p>
+			Exames solicitados para o animal <strong>{{$consulta_realizada->animal_nome}}</strong>, do(a) cliente 
+			<strong>{{$consulta_realizada->cliente_nome}}</strong>
+		</p>
+		<!-- Listagem de exames marcados (**todos para um veterinário**) com os campos: data de solicitação (**link para consulta**), Cliente, Animal, Espécie, Tipo de Animal, nome do exame, objetivo, analisado (colorir)!-->
+		<table class="table table-bordered tabela_exames_interno">
+			<thead>
+				<tr class="bg-info">
+					<th>Data</th>
+					<th>Exame</th>
+					<th>Objetivo</th>
+					<th class="bg-primary"></th>
+					<th class="bg-primary"></th>
+				</tr>
+			</thead>
+			<tbody>
+			@for($i=0;$i < 5;$i++)
+				<tr>
+					<td>01/02/2017</td>
+					<td>Exame de Sangue</td>
+					<td>Verificar a saúde geral do animal analisado.</td>
+					<td class="text-center exame_realizado_coluna">
+						<a href="#" id="exame_realizado">
+							<i class="fa fa-check fa-2x" aria-hidden="true"></i>
+						</a>
+					</td>
+					<td class="text-center">
+						<a href="#" id="exclui_exame">
+							<i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+						</a>
+					</td>
+				</tr>
+			@endfor
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#novoExame">Novo Exame</button>
+	</fieldset>
+	@endif
+	<!-- Modal -->
+	<div id="novoExame" class="modal fade" role="dialog">
+    	<div class="modal-dialog">
+	        <!-- Modal content-->
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                <h4 class="modal-title">Marcar Novo Exame</h4>
+	             </div>
+	            <div class="modal-body">
+	                <p>
+	                	Preencha os campos abaixo caso deseje marcar um novo exame para o animal que está passando pela consulta.
+	                </p>
+	                <form action="{{action('ExameController@adiciona')}}" method="POST">
+	                	<div class="row">
+	                		<div class="col-md-6">
+	                			<div class="form-group">
+	                				<label for="nome">Nome do Exame</label>
+	                				<input type="text" name="nome" id="nome_exame" class="form-control">
+	                			</div>
+	                		</div>
+	                		<div class="col-md-6">
+	                			<div class="form-group">
+	                				<label for="objetivo">Objetivo</label>
+	                				<input type="text" name="objetivo" id="objetivo_exame" class="form-control">
+	                			</div>
+	                		</div>
+	                	</div>
+	                </form>
+	             </div>
+	            <div class="modal-footer">
+	            	<button type="button" class="btn btn-primary" id="marcar_exame">Marcar Exame</button>
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	            </div>
+	    	</div>
+		</div>
+	</div>
 @stop
