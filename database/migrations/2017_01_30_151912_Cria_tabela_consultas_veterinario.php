@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 class CriaTabelaConsultasVeterinario extends Migration {
 	public function up()
 	{
-		// Criar tabela **consultas_veterinario**, com os campos: veterinario_id, animal_id, data, sintomas, diagnóstico, tratamento, tratamento_encerrado (boolean)
 		Schema::create("consultas_veterinario",function(Blueprint $table){
 			$table->increments("id");
 			$table->integer("veterinario_id")->unsigned();
