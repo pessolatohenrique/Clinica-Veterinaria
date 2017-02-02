@@ -20,7 +20,7 @@
 	<form action="{{isset($consulta_realizada->id)?action('HistoricoConsultaController@atualiza'):action('HistoricoConsultaController@adiciona')}}" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="veterinario_id" value="{{Auth::user()->id}}">
-		<input type="hidden" name="consulta_id" value="{{isset($consulta_realizada->id)?$consulta_realizada->id:''}}">
+		<input type="hidden" name="consulta_id" id="consulta_id" value="{{isset($consulta_realizada->id)?$consulta_realizada->id:''}}">
 		<input type="hidden" id="cliente_id_consulta" value="{{isset($consulta_realizada->id)?$consulta_realizada->cliente_id:''}}">
 		<fieldset>
 			<legend>Dados do Cliente</legend>
@@ -50,7 +50,7 @@
 			<div class="row">
 				<div class="col-md-2">
 					<label for="data">Data de Realização</label>
-					<input type="text" name="data" class="form-control data" 
+					<input type="text" name="data" class="form-control data" id="data_consulta"
 					value="{{isset($consulta_realizada->id)?convertDateToBrazilian($consulta_realizada->data):$dataAtual}}">
 				</div>
 				<div class="col-md-4">
@@ -116,7 +116,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			@for($i=0;$i < 5;$i++)
+			@for($i=0;$i < 3;$i++)
 				<tr>
 					<td>01/02/2017</td>
 					<td>Exame de Sangue</td>
@@ -147,31 +147,33 @@
 	                <button type="button" class="close" data-dismiss="modal">&times;</button>
 	                <h4 class="modal-title">Marcar Novo Exame</h4>
 	             </div>
-	            <div class="modal-body">
-	                <p>
-	                	Preencha os campos abaixo caso deseje marcar um novo exame para o animal que está passando pela consulta.
-	                </p>
-	                <form action="{{action('ExameController@adiciona')}}" method="POST">
-	                	<div class="row">
-	                		<div class="col-md-6">
-	                			<div class="form-group">
-	                				<label for="nome">Nome do Exame</label>
-	                				<input type="text" name="nome" id="nome_exame" class="form-control">
-	                			</div>
-	                		</div>
-	                		<div class="col-md-6">
-	                			<div class="form-group">
-	                				<label for="objetivo">Objetivo</label>
-	                				<input type="text" name="objetivo" id="objetivo_exame" class="form-control">
-	                			</div>
-	                		</div>
-	                	</div>
-	                </form>
-	             </div>
-	            <div class="modal-footer">
-	            	<button type="button" class="btn btn-primary" id="marcar_exame">Marcar Exame</button>
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	            </div>
+             	<form action="{{action('ExameController@adiciona')}}" method="POST">
+             		<input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
+		            <div class="modal-body">
+		                <p>
+		                	Preencha os campos abaixo caso deseje marcar um novo exame para o animal que está passando pela consulta.
+		                </p>
+		                
+		                	<div class="row">
+		                		<div class="col-md-6">
+		                			<div class="form-group">
+		                				<label for="nome">Nome do Exame</label>
+		                				<input type="text" name="nome" id="nome_exame" class="form-control">
+		                			</div>
+		                		</div>
+		                		<div class="col-md-6">
+		                			<div class="form-group">
+		                				<label for="objetivo">Objetivo</label>
+		                				<input type="text" name="objetivo" id="objetivo_exame" class="form-control">
+		                			</div>
+		                		</div>
+		                	</div>
+		             </div>
+		            <div class="modal-footer">
+		            	<button type="button" class="btn btn-primary" id="marcar_exame">Marcar Exame</button>
+		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		            </div>
+	            </form>
 	    	</div>
 		</div>
 	</div>
