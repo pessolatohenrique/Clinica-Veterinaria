@@ -22,17 +22,18 @@
 			</tr>
 		</thead>
 		<tbody>
-		@for($i = 0; $i < 5; $i++)
+		@foreach($exames as $exame)
 			<tr>
-				<td>01/02/2017</td>
-				<td>Henrique Pessolato</td>
-				<td>Barry</td>
-				<td>Maine Coon</td>
-				<td>Gato</td>
-				<td>Exame de Sangue</td>
-				<td>Verificar sintomas gerais do animal</td>
+				<td>{{convertDateToBrazilian($exame->data_consulta)}}</td>
+				<td>{{$exame->cliente_nome}}</td>
+				<td>{{$exame->animal_nome}}</td>
+				<td>{{$exame->especie_nome}}</td>
+				<td>{{$exame->tipo_animal}}</td>
+				<td>{{$exame->nome}}</td>
+				<td>{{$exame->objetivo}}</td>
+				<input type="hidden" id="analisado" value="{{$exame->analisado}}">
 			</tr>
-		@endfor
+		@endforeach
 		</tbody>
 	</table>
 @stop

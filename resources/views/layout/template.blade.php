@@ -76,8 +76,7 @@ endif;
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Exame
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-  						<li><a href="#">Adicionar</a></li>
-  						<li><a href="#">Listar</a></li>
+  						<li><a href="{{action('ExameController@lista')}}">Listar</a></li>
   						<li><a href="#">Pesquisar</a></li>
 					</ul>
 				</li>

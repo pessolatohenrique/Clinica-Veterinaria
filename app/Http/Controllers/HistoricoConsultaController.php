@@ -5,6 +5,7 @@ use ClinicaVeterinaria\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use ClinicaVeterinaria\Http\Requests\HistoricoConsultaRequest;
 use ClinicaVeterinaria\HistoricoConsulta;
+use ClinicaVeterinaria\Exame;
 use Auth;
 class HistoricoConsultaController extends Controller {
 	public function __construct(){
@@ -33,10 +34,15 @@ class HistoricoConsultaController extends Controller {
 	}
 	public function consulta(Request $request){
 		$consulta_id = $request->input("consulta_id");
+		$veterinario_id = Auth::user()->id;
+		$params["animal_id"] = $request->input("animal_id");
 		$consultaObj = new HistoricoConsulta();
+		$exameObj = new Exame();
+		$exames = $exameObj->lista($veterinario_id,$params);
 		$consulta_realizada = $consultaObj->consulta($consulta_id);
 		$dados = array("dataAtual" => date("d/m/Y"),
-			"consulta_realizada" => $consulta_realizada[0]);
+			"consulta_realizada" => $consulta_realizada[0],
+			"exames" => $exames);
 		return view("historicoConsulta/formulario")->with($dados);
 	}
 	public function exclui(Request $request){

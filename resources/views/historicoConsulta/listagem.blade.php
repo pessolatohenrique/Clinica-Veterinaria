@@ -59,6 +59,7 @@
 						<form action="/historicoConsulta/consulta" method="POST">
 							<input type="hidden" name="_token" value="{{csrf_token()}}">
 							<input type="hidden" name="consulta_id" value="{{$consulta->id}}">
+							<input type="hidden" name="animal_id" value="{{$consulta->animal_id}}">
 							<button type="submit" class="fa fa-pencil fa-2x btn btn-link icone" name="btn_atualizar"></button>
 						</form>
 					</td>

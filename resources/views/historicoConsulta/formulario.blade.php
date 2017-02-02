@@ -116,11 +116,11 @@
 				</tr>
 			</thead>
 			<tbody>
-			@for($i=0;$i < 3;$i++)
+			@foreach($exames as $exame)
 				<tr>
-					<td>01/02/2017</td>
-					<td>Exame de Sangue</td>
-					<td>Verificar a saúde geral do animal analisado.</td>
+					<td>{{convertDateToBrazilian($exame->data_consulta)}}</td>
+					<td>{{$exame->nome}}</td>
+					<td>{{$exame->objetivo}}</td>
 					<td class="text-center exame_realizado_coluna">
 						<a href="#" id="exame_realizado">
 							<i class="fa fa-check fa-2x" aria-hidden="true"></i>
@@ -132,7 +132,7 @@
 						</a>
 					</td>
 				</tr>
-			@endfor
+			@endforeach
 			</tbody>
 		</table>
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#novoExame">Novo Exame</button>
