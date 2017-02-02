@@ -43,6 +43,48 @@ function adicionaExame(objeto){
 		$("#marcar_exame").attr("disabled",false);
 	});	
 }
+function alteraEstiloExame(analisado,linha){
+	if(analisado == 1){
+		$(linha).removeClass("bg-danger");
+		$(linha).addClass("bg-success");
+		$(linha).find(".exame_realizado i").removeClass("fa-check");
+		$(linha).find(".exame_realizado i").addClass("fa-times");
+		$(linha).find(".analisado").val("1");
+	}else{
+		$(linha).removeClass("bg-success");
+		$(linha).addClass("bg-danger");
+		$(linha).find(".exame_realizado i").removeClass("fa-times");
+		$(linha).find(".exame_realizado i").addClass("fa-check");
+		$(linha).find(".analisado").val("0");
+	}
+}
+function atualizaExame(exame_id,analisado,linha){
+	$(".spinner").addClass("mostra-spinner");
+	var analisado_atualiza = 0;
+	if(analisado == 1){
+		analisado_atualiza = 0;
+	}else{
+		analisado_atualiza = 1;
+	}
+	var token = $("#token").val();
+	var dados = {"_token":token,"exame_id":exame_id, "analisado":analisado_atualiza};
+	$.post("/exame/atualiza",dados,function(data){
+		alteraEstiloExame(dados.analisado,linha);
+	})
+	.fail(function(){
+		alert("Erro ao atualizar exame. Contate o desenvolvedor!");
+	})
+	.always(function(){
+		$(".spinner").removeClass("mostra-spinner");
+	});
+}
+function buscaIdExame(event){
+	event.preventDefault();
+	var linha = $(this).parent().parent();
+	var exame_id = linha.find(".exame_id").val();
+	var foiAnalisado = linha.find(".analisado").val();
+	atualizaExame(exame_id,foiAnalisado,linha);
+}
 /*verifica se um exame já foi analisado*/
 function verificaExames(tabela){
 	var linhas = $(tabela).find("tr");
@@ -57,10 +99,10 @@ function verificaExames(tabela){
 		}else{
 			$(val).addClass("bg-danger");
 		}
+		$(val).find(".exame_realizado_coluna a").on("click",buscaIdExame);
 	});
 }
 $(document).ready(function(){
-	//fazer para classes da listagem geral e do formulário
 	var isExame = $("table").hasClass("tabela_exames_interno");
 	if(isExame){
 		var tabelaExames = $(".tabela_exames_interno").find("tbody");

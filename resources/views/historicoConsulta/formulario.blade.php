@@ -108,6 +108,10 @@
 			<span class="text-danger"><strong>Exames ainda não analisados</strong></span>
 		</p>
 		<!-- Listagem de exames marcados (**todos para um veterinário**) com os campos: data de solicitação (**link para consulta**), Cliente, Animal, Espécie, Tipo de Animal, nome do exame, objetivo, analisado (colorir)!-->
+		<div class="spinner">
+			<img src="/img/spinner.gif">
+			<p>Aguarde...</p>
+		</div>
 		<table class="table table-bordered tabela_exames_interno">
 			<thead>
 				<tr class="bg-info">
@@ -134,6 +138,7 @@
 							<i class="fa fa-trash fa-2x" aria-hidden="true"></i>
 						</a>
 					</td>
+					<input type="hidden" class="exame_id" value="{{$exame->id}}">
 					<input type="hidden" class="analisado" value="{{$exame->analisado}}">
 				</tr>
 			@endforeach

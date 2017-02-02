@@ -6,7 +6,7 @@ class Exame extends Model {
 	public $timestamps = false;
 	protected $fillable = ["consulta_id","nome","objetivo","analisado"];
 	public function lista($veterinario_id,$params = array()){
-		$query = "SELECT cv.data AS data_consulta, c.id AS cliente_id, c.nome AS cliente_nome, a.id AS animal_id, a.nome AS animal_nome, e.id AS especie_id, e.nome AS especie_nome, t.descricao AS tipo_animal, ex.nome, ex.objetivo, ex.analisado FROM consultas_veterinario cv 
+		$query = "SELECT ex.id, cv.data AS data_consulta, c.id AS cliente_id, c.nome AS cliente_nome, a.id AS animal_id, a.nome AS animal_nome, e.id AS especie_id, e.nome AS especie_nome, t.descricao AS tipo_animal, ex.nome, ex.objetivo, ex.analisado FROM consultas_veterinario cv 
 			INNER JOIN exames ex ON ex.consulta_id = cv.id
 			INNER JOIN animais a ON cv.animal_id = a.id
 			INNER JOIN clientes c ON a.cliente_id = c.id
@@ -19,5 +19,8 @@ class Exame extends Model {
 		}
 		$query = $query." ORDER BY cv.data DESC";
 		return DB::select($query);
+	}
+	public function atualiza($exame_id,$campos){
+		return DB::table("exames")->where("id",$exame_id)->update($campos);
 	}
 }

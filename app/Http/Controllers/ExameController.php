@@ -21,4 +21,11 @@ class ExameController extends Controller {
 		$campos["analisado"] = 0;
 		Exame::create($campos);
 	}
+	public function atualiza(Request $request){
+		$campos = array();
+		$exameObj = new Exame();
+		$exame_id = $request->input("exame_id");
+		$campos["analisado"] = $request->input("analisado");
+		echo $exameObj->atualiza($exame_id,$campos);
+	}
 }

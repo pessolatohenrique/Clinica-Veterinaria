@@ -58,3 +58,4 @@ Route::post('/historicoConsulta/atualiza','HistoricoConsultaController@atualiza'
 Route::get('/historicoConsulta/pesquisa','HistoricoConsultaController@formulario_pesquisa');
 Route::get('/exame','ExameController@lista');
 Route::post('/exame/adiciona','ExameController@adiciona');
+Route::post('/exame/atualiza','ExameController@atualiza');

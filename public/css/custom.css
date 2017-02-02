@@ -35,3 +35,9 @@
 .exame_realizado_consulta{
 	width: 6.7%;
 }
+.spinner{
+	display: none;
+}
+.mostra-spinner{
+	display: block;
+}
