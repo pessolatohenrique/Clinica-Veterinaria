@@ -43,7 +43,29 @@ function adicionaExame(objeto){
 		$("#marcar_exame").attr("disabled",false);
 	});	
 }
+/*verifica se um exame já foi analisado*/
+function verificaExames(tabela){
+	var linhas = $(tabela).find("tr");
+	var analisado = 0;
+	$.each(linhas,function(key,val){
+		analisado = $(val).find(".analisado").val();
+		if(analisado == 1){
+			var colunaRealizado = $(val).find(".exame_realizado_coluna");
+			$(val).addClass("bg-success");
+			colunaRealizado.find("i").removeClass("fa-check");
+			colunaRealizado.find("i").addClass("fa-times");
+		}else{
+			$(val).addClass("bg-danger");
+		}
+	});
+}
 $(document).ready(function(){
+	//fazer para classes da listagem geral e do formulário
+	var isExame = $("table").hasClass("tabela_exames_interno");
+	if(isExame){
+		var tabelaExames = $(".tabela_exames_interno").find("tbody");
+		verificaExames(tabelaExames);
+	}
 	$("#marcar_exame").on("click",function(){
 		var exame = {
 			"nome": $("#nome_exame").val(),

@@ -4,12 +4,12 @@
 @stop
 @section("conteudo")
 	<h1>Exames Marcados</h1>
-	<p>Listagem de exames marcados durante uma consulta médica.</p>
-	<!-- 
-
-	Listagem de exames marcados (**todos para um veterinário**) com os campos: data de solicitação (**link para consulta**), Cliente, Animal, Espécie, Tipo de Animal, nome do exame, objetivo, analisado (colorir)
-	!-->
-	<table class="table table-bordered tabela-exames">
+	<p>Listagem de exames marcados durante uma consulta médica.
+		<br>
+		<strong>Legenda:</strong> <span class="text-success"><strong>Exames já analisados</strong></span>;
+		<span class="text-danger"><strong>Exames ainda não analisados</strong></span>
+	</p>
+	<table class="table table-bordered tabela_exames_interno">
 		<thead>
 			<tr class="bg-info">
 				<th>Data</th>

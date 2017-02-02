@@ -103,6 +103,9 @@
 		<p>
 			Exames solicitados para o animal <strong>{{$consulta_realizada->animal_nome}}</strong>, do(a) cliente 
 			<strong>{{$consulta_realizada->cliente_nome}}</strong>
+			<br>
+			<strong>Legenda:</strong> <span class="text-success"><strong>Exames já analisados</strong></span>;
+			<span class="text-danger"><strong>Exames ainda não analisados</strong></span>
 		</p>
 		<!-- Listagem de exames marcados (**todos para um veterinário**) com os campos: data de solicitação (**link para consulta**), Cliente, Animal, Espécie, Tipo de Animal, nome do exame, objetivo, analisado (colorir)!-->
 		<table class="table table-bordered tabela_exames_interno">
@@ -122,15 +125,16 @@
 					<td>{{$exame->nome}}</td>
 					<td>{{$exame->objetivo}}</td>
 					<td class="text-center exame_realizado_coluna">
-						<a href="#" id="exame_realizado">
+						<a href="#" class="exame_realizado">
 							<i class="fa fa-check fa-2x" aria-hidden="true"></i>
 						</a>
 					</td>
 					<td class="text-center">
-						<a href="#" id="exclui_exame">
+						<a href="#" class="exclui_exame">
 							<i class="fa fa-trash fa-2x" aria-hidden="true"></i>
 						</a>
 					</td>
+					<input type="hidden" class="analisado" value="{{$exame->analisado}}">
 				</tr>
 			@endforeach
 			</tbody>
