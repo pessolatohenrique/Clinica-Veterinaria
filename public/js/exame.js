@@ -7,7 +7,7 @@ function limpaModal(){
 function novaLinhaExame(objeto){
 	var dataConsulta = $("#data_consulta").val();
 	var tabela = $(".tabela_exames_interno");
-	var linha = $("<tr>").addClass("bg-info");
+	var linha = $("<tr>").addClass("bg-danger");
 	var colunaData = $("<td>").text(dataConsulta);
 	var colunaNome = $("<td>").text(objeto.nome);
 	var colunaObjetivo = $("<td>").text(objeto.objetivo);
@@ -85,6 +85,25 @@ function buscaIdExame(event){
 	var foiAnalisado = linha.find(".analisado").val();
 	atualizaExame(exame_id,foiAnalisado,linha);
 }
+function excluiExame(event){
+	event.preventDefault();
+	$(".spinner").addClass("mostra-spinner");
+	var token = $("#token").val();
+	var linha = $(this).parent().parent();
+	var exame_id = linha.find(".exame_id").val();
+	var dados =  {"_token":token, "exame_id":exame_id};
+	$.post("/exame/apaga",dados,function(data){
+		linha.fadeOut(800,function(){
+			linha.remove();
+		});
+	})
+	.fail(function(){
+		alert("Erro ao excluir exame. Contate o desenvolvedor!");
+	})
+	.always(function(){
+		$(".spinner").removeClass("mostra-spinner");
+	});
+}
 /*verifica se um exame já foi analisado*/
 function verificaExames(tabela){
 	var linhas = $(tabela).find("tr");
@@ -100,6 +119,7 @@ function verificaExames(tabela){
 			$(val).addClass("bg-danger");
 		}
 		$(val).find(".exame_realizado_coluna a").on("click",buscaIdExame);
+		$(val).find(".exclui_exame").on("click",excluiExame);
 	});
 }
 $(document).ready(function(){

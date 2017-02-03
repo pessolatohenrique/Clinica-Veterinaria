@@ -23,4 +23,7 @@ class Exame extends Model {
 	public function atualiza($exame_id,$campos){
 		return DB::table("exames")->where("id",$exame_id)->update($campos);
 	}
+	public function exclui($exame_id){
+		return DB::table("exames")->where("id",$exame_id)->delete();
+	}
 }

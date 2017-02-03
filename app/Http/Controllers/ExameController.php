@@ -28,4 +28,9 @@ class ExameController extends Controller {
 		$campos["analisado"] = $request->input("analisado");
 		echo $exameObj->atualiza($exame_id,$campos);
 	}
+	public function exclui(Request $request){
+		$exame_id = $request->input("exame_id");
+		$exameObj = new Exame();
+		$exameObj->exclui($exame_id);
+	}
 }
