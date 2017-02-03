@@ -60,3 +60,4 @@ Route::get('/exame','ExameController@lista');
 Route::post('/exame/adiciona','ExameController@adiciona');
 Route::post('/exame/atualiza','ExameController@atualiza');
 Route::post('/exame/apaga','ExameController@exclui');
+Route::get('/exame/pesquisa','ExameController@formulario_pesquisa');

@@ -11,6 +11,8 @@ class ExameController extends Controller {
 	public function lista(Request $request){
 		$exameObj = new Exame();
 		$veterinario_id = Auth::user()->id;
+		$params = array();
+		$params = $request->all();
 		$params["animal_id"] = $request->input("animal_id");
 		$exames = $exameObj->lista($veterinario_id,$params);
 		$dados = array("exames" => $exames);
@@ -32,5 +34,8 @@ class ExameController extends Controller {
 		$exame_id = $request->input("exame_id");
 		$exameObj = new Exame();
 		$exameObj->exclui($exame_id);
+	}
+	public function formulario_pesquisa(){
+		return view("exame/pesquisa");
 	}
 }

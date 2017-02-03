@@ -77,7 +77,7 @@ endif;
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
   						<li><a href="{{action('ExameController@lista')}}">Listar</a></li>
-  						<li><a href="#">Pesquisar</a></li>
+  						<li><a href="{{action('ExameController@formulario_pesquisa')}}">Pesquisar</a></li>
 					</ul>
 				</li>
 		    </ul>

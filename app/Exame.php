@@ -17,6 +17,34 @@ class Exame extends Model {
 			$animal_id = $params["animal_id"];
 			$query = $query." AND cv.animal_id = {$animal_id}";
 		}
+		if(isset($params["data_inicial"]) && $params["data_inicial"] != ""){
+			$dataInicio = convertDateToAmerican($params["data_inicial"]);
+			$query = $query." AND cv.data >= '{$dataInicio}'";
+		}
+		if(isset($params["data_final"]) && $params["data_final"] != ""){
+			$dataFim = convertDateToAmerican($params["data_final"]);
+			$query = $query." AND cv.data <= '{$dataFim}'";
+		}
+		if(isset($params["cpf"]) && $params["cpf"] != ""){
+			$cpf = documentToDataBase($params["cpf"]);
+			$query = $query." AND c.cpf = '{$cpf}'";
+		}
+		if(isset($params["cliente"]) && $params["cliente"] != ""){
+			$cliente = $params["cliente"];
+			$query = $query." AND c.nome LIKE '%{$cliente}%'";
+		}
+		if(isset($params["exame"]) && $params["exame"] != ""){
+			$exame = $params["exame"];
+			$query = $query." AND ex.nome LIKE '%{$exame}%'";
+		}
+		if(isset($params["objetivo"]) && $params["objetivo"] != ""){
+			$objetivo = $params["objetivo"];
+			$query = $query." AND ex.objetivo LIKE '%{$objetivo}%'";
+		}
+		if(isset($params["analisado"]) && $params["analisado"] != ""){
+			$analisado = $params["analisado"];
+			$query = $query." AND ex.analisado = {$analisado}";
+		}
 		$query = $query." ORDER BY cv.data DESC";
 		return DB::select($query);
 	}
