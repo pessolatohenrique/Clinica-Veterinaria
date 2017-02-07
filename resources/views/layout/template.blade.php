@@ -20,6 +20,7 @@ endif;
 	<script type="text/javascript" src="/js/cep.js"></script>
 	<script type="text/javascript" src="/js/consultaRealizada.js"></script>
 	<script type="text/javascript" src="/js/exame.js"></script>
+	<script type="text/javascript" src="/js/pagamento.js"></script>
 	<script src="https://use.fontawesome.com/b17cc3a995.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.js"></script>
 </head>

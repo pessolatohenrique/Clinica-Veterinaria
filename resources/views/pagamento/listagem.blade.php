@@ -4,9 +4,13 @@
 @stop
 @section("conteudo")
 	<h1>Listagem de Pagamentos</h1>
-	<p>Para melhorar a filtragem de pagamentos, como por exemplo: por cliente, por status, por valor, entre outros, utilize a <a href="/pagamento/pesquisa">pesquisa</a>.</p>
+	<p>
+		Para melhorar a filtragem de pagamentos, como por exemplo: por cliente, por status, por valor, entre outros, utilize a <a href="/pagamento/pesquisa">pesquisa</a>.
+		<br>
+		Legenda: <strong><span class="text-success">Pago</span></strong>; <strong><span class="text-danger">Não Pago</span></strong>
+	</p>
 	<!-- Listagem de pagamentos, com os campos: cliente, data da consulta, valor, animal, sintomas, diagnostico, tratamento!-->
-	<table class="table table-bordered">
+	<table class="table table-bordered tabela-pagamentos">
 		<thead>
 			<tr class="bg-info">
 				<th>Data</th>
@@ -16,6 +20,7 @@
 				<th>Sintomas</th>
 				<th>Diagnóstico</th>
 				<th>Tratamento</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,7 +33,12 @@
 				<td>{{substr($pagamento->sintomas,0,30)}}</td>
 				<td>{{$pagamento->diagnostico}}</td>
 				<td>{{substr($pagamento->tratamento,0,41)}}</td>
-				<input type="hidden" name="status" id="status_pagto" value="{{$pagamento->status}}">
+				<td>
+					<a href="#" class="pagamento_realizado">
+						<i class="fa fa-check fa-2x" aria-hidden="true"></i>
+					</a>
+				</td>
+				<input type="hidden" name="status" class="status_pagto" value="{{$pagamento->status}}">
 			</tr>
 		@endforeach
 		</tbody>
