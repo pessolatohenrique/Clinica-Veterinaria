@@ -8,6 +8,8 @@
 	<p>
 		Para melhorar a filtragem de pagamentos, como por exemplo: por cliente, por status, por valor, entre outros, utilize a <a href="/pagamento/pesquisa">pesquisa</a>.
 		<br>
+		O <strong>total à receber</strong> é calculado de acordo com a pesquisa realizada.
+		<br>
 		Legenda: <strong><span class="text-success">Pago</span></strong>; <strong><span class="text-danger">Não Pago</span></strong>
 	</p>
 	<div class="spinner">
@@ -46,6 +48,12 @@
 				<input type="hidden" name="status" class="status_pagto" value="{{$pagamento->status}}">
 			</tr>
 		@endforeach
+			<tr class="bg-primary">
+				<td colspan="8">
+					Total à receber: <span class="total_receber">R$ 000.000.000,00</span>; referente à 
+					<span class="quantidade_receber">00</span> consultas médicas
+				</td>
+			</tr>
 		</tbody>
 	</table>
 @stop

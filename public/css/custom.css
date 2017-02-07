@@ -41,3 +41,9 @@
 .mostra-spinner{
 	display: block;
 }
+.tabela-pagamentos tbody > tr:last-child{
+	font-size: 22px;
+}
+.total_receber,.quantidade_receber{
+	font-weight: bold;
+}
