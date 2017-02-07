@@ -162,6 +162,7 @@ $(document).ready(function(){
 	$(".rg").mask("00.000.000-0");
 	$(".data").mask("00/00/0000");
 	$(".horario").mask("00:00");
+	$('.dinheiro').mask('0.000,00', {reverse: true});
 	$("#tipoAnimal_id").on("change",function(event){
 		var tipo_id = $(this).val();
 		listaEspecies(tipo_id);

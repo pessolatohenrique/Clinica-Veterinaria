@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ClinicaVeterinaria\Http\Requests\HistoricoConsultaRequest;
 use ClinicaVeterinaria\HistoricoConsulta;
 use ClinicaVeterinaria\Exame;
+use ClinicaVeterinaria\Pagamento;
 use Auth;
 class HistoricoConsultaController extends Controller {
 	public function __construct(){
@@ -26,10 +27,20 @@ class HistoricoConsultaController extends Controller {
 		return view("historicoConsulta/pesquisa");
 	}
 	public function adiciona(HistoricoConsultaRequest $request){
+		//adiciona uma consulta realizada		
 		$campos = $request->all();
 		$campos["cpf"] = documentToDataBase($campos["cpf"]);
 		$campos["data"] = convertDateToAmerican($campos["data"]);
-		HistoricoConsulta::create($campos);
+		$consultaObj = new HistoricoConsulta($campos);
+		$consultaObj->save();
+		//adiciona um pagamento
+		$parametros_pagto = array(
+			"consulta_id" => $consultaObj->id,
+			"valor" => moneyToDataBase($request->input("valor_pagamento")),
+			"status" => 0
+		);
+		$pagtoObj = new Pagamento($parametros_pagto);
+		$pagtoObj->save();
 		return redirect()->action("HistoricoConsultaController@lista")->with('adicionou','Consulta adicionada com sucesso!');
 	}
 	public function consulta(Request $request){

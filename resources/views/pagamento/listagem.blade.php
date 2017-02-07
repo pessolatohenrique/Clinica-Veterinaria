@@ -10,7 +10,7 @@
 		<thead>
 			<tr class="bg-info">
 				<th>Data</th>
-				<th>Valor</th>
+				<th>Valor (R$)</th>
 				<th>Cliente</th>
 				<th>Animal</th>
 				<th>Sintomas</th>
@@ -19,18 +19,18 @@
 			</tr>
 		</thead>
 		<tbody>
-		@for($i = 0; $i < 4; $i++)
+		@foreach($pagamentos as $pagamento)
 			<tr>
-				<td>01/02/2017</td>
-				<td>R$ 120,00</td>
-				<td>Henrique Pessolato</td>
-				<td>Barry</td>
-				<td>Dor de cabeça, febre</td>
-				<td>Febre</td>
-				<td>Vacina contra a febre</td>
-				<input type="hidden" name="status" id="status_pagto" value="1">
+				<td>{{convertDateToBrazilian($pagamento->data)}}</td>
+				<td class="dinheiro text-center">{{$pagamento->valor}}</td>
+				<td>{{$pagamento->cliente_nome}}</td>
+				<td>{{$pagamento->animal_nome}}</td>
+				<td>{{substr($pagamento->sintomas,0,30)}}</td>
+				<td>{{$pagamento->diagnostico}}</td>
+				<td>{{substr($pagamento->tratamento,0,41)}}</td>
+				<input type="hidden" name="status" id="status_pagto" value="{{$pagamento->status}}">
 			</tr>
-		@endfor
+		@endforeach
 		</tbody>
 	</table>
 @stop

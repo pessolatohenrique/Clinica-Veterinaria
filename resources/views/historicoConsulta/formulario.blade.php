@@ -53,7 +53,7 @@
 					<input type="text" name="data" class="form-control data" id="data_consulta"
 					value="{{isset($consulta_realizada->id)?convertDateToBrazilian($consulta_realizada->data):$dataAtual}}">
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<label for="tratamento_encerrado">Tratamento encerrado?</label>
 					<div class="radio">
 						<label><input type="radio" name="tratamento_encerrado" value="1" 
@@ -71,6 +71,10 @@
 						?>
 						>Não</label>
 					</div>
+				</div>
+				<div class="col-md-2">
+					<label for="valor_pagamento">Valor do Pagto (R$)</label>
+					<input type="text" name="valor_pagamento" class="form-control dinheiro">
 				</div>
 			</div>
 			<div class="row">

@@ -12,3 +12,9 @@ function phoneToDataBase($telefone){
 	$formatado = str_replace("-", "",$formatado);
 	return $formatado;
 }
+/*formata um valor monetário em R$ para o banco de dados*/
+function moneyToDataBase($valor){
+	$formatado = str_replace(".","",$valor);
+	$formatado = str_replace(",",".",$formatado);
+	return $formatado;
+}
