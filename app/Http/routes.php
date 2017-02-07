@@ -63,3 +63,4 @@ Route::post('/exame/apaga','ExameController@exclui');
 Route::get('/exame/pesquisa','ExameController@formulario_pesquisa');
 Route::get('/pagamento','PagamentoController@lista');
 Route::get('/pagamento/pesquisa','PagamentoController@formulario_pesquisa');
+Route::post('/pagamento/atualiza','PagamentoController@atualiza');

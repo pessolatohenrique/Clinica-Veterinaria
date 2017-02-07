@@ -4,12 +4,16 @@
 @stop
 @section("conteudo")
 	<h1>Listagem de Pagamentos</h1>
+	<input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
 	<p>
 		Para melhorar a filtragem de pagamentos, como por exemplo: por cliente, por status, por valor, entre outros, utilize a <a href="/pagamento/pesquisa">pesquisa</a>.
 		<br>
 		Legenda: <strong><span class="text-success">Pago</span></strong>; <strong><span class="text-danger">Não Pago</span></strong>
 	</p>
-	<!-- Listagem de pagamentos, com os campos: cliente, data da consulta, valor, animal, sintomas, diagnostico, tratamento!-->
+	<div class="spinner">
+		<img src="/img/spinner.gif">
+		<p>Aguarde...</p>
+	</div>
 	<table class="table table-bordered tabela-pagamentos">
 		<thead>
 			<tr class="bg-info">
@@ -38,6 +42,7 @@
 						<i class="fa fa-check fa-2x" aria-hidden="true"></i>
 					</a>
 				</td>
+				<input type="hidden" name="pagamento_id" class="pagamento_id" value="{{$pagamento->id}}">
 				<input type="hidden" name="status" class="status_pagto" value="{{$pagamento->status}}">
 			</tr>
 		@endforeach

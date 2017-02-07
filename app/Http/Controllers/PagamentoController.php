@@ -15,4 +15,10 @@ class PagamentoController extends Controller {
 	public function formulario_pesquisa(){
 
 	}
+	public function atualiza(Request $request){
+		$pagamentoObj = new Pagamento();
+		$pagamento_id = $request->input("pagamento_id");
+		$parametros["status"] = $request->input("status");
+		$pagamentoObj->atualiza($pagamento_id,$parametros);
+	}
 }

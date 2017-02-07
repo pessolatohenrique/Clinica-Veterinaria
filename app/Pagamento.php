@@ -14,4 +14,7 @@ class Pagamento extends Model {
 		$query = $query." ORDER BY cv.data DESC";
 		return DB::select($query);
 	}
+	public function atualiza($pagamento_id,$campos){
+		DB::table("pagamentos")->where("id",$pagamento_id)->update($campos);
+	}
 }
