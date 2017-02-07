@@ -61,3 +61,5 @@ Route::post('/exame/adiciona','ExameController@adiciona');
 Route::post('/exame/atualiza','ExameController@atualiza');
 Route::post('/exame/apaga','ExameController@exclui');
 Route::get('/exame/pesquisa','ExameController@formulario_pesquisa');
+Route::get('/pagamento','PagamentoController@lista');
+Route::get('/pagamento/pesquisa','PagamentoController@formulario_pesquisa');

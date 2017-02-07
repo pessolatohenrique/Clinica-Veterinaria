@@ -80,6 +80,14 @@ endif;
   						<li><a href="{{action('ExameController@formulario_pesquisa')}}">Pesquisar</a></li>
 					</ul>
 				</li>
+  				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Pagamento
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+  						<li><a href="{{action('PagamentoController@lista')}}">Listar</a></li>
+  						<li><a href="{{action('PagamentoController@formulario_pesquisa')}}">Pesquisar</a></li>
+					</ul>
+				</li>
 		    </ul>
 		    @endif
 		    <ul class="nav navbar-nav navbar-right">
