@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 use ClinicaVeterinaria\Pagamento;
 
 class PagamentoController extends Controller {
-	public function lista(){
+	public function __construct(){
+		$this->middleware("autorizaVeterinario");
+	}
+	public function lista(Request $request){
 		$pagamentoObj = new Pagamento();
-		$pagamentos = $pagamentoObj->lista();
+		$parametros = $request->all();
+		$pagamentos = $pagamentoObj->lista($parametros);
 		$dados = array("pagamentos" => $pagamentos);
 		return view("pagamento/listagem")->with($dados);
 	}
 	public function formulario_pesquisa(){
-
+		return view("pagamento/pesquisa");
 	}
 	public function atualiza(Request $request){
 		$pagamentoObj = new Pagamento();
