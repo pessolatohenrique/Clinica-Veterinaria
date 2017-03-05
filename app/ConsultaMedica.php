@@ -71,4 +71,10 @@ class ConsultaMedica extends Model {
 	public function exclui($consulta_id){
 		return DB::table("consultas_medicas")->where("id",$consulta_id)->delete();
 	}
+	/*totaliza consultas a serem realizadas daqui 1 ou 2 dias*/
+	public function contaProximasConsultas(){
+		$query = "SELECT COUNT(*) FROM consultas_medicas cm 
+		WHERE DATEDIFF(cm.data,NOW()) = 1";
+		return DB::select($query);
+	}
 }

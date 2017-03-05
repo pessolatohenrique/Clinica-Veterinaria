@@ -64,3 +64,4 @@ Route::get('/exame/pesquisa','ExameController@formulario_pesquisa');
 Route::get('/pagamento','PagamentoController@lista');
 Route::get('/pagamento/pesquisa','PagamentoController@formulario_pesquisa');
 Route::post('/pagamento/atualiza','PagamentoController@atualiza');
+Route::get('/pagamento/relatorio','PagamentoController@criaRelatorioPDF');

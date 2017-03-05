@@ -40,7 +40,6 @@ $app->singleton(
 	'Illuminate\Contracts\Debug\ExceptionHandler',
 	'ClinicaVeterinaria\Exceptions\Handler'
 );
-
 /*
 |--------------------------------------------------------------------------
 | Return The Application

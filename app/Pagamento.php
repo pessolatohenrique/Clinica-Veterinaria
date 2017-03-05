@@ -32,6 +32,10 @@ class Pagamento extends Model {
 			$valor = moneyToDataBase($params["valor"]);
 			$query = $query." AND p.valor >= {$valor}";
 		}
+		if(isset($params["status"]) && ($params["status"] == 1 || $params["status"] == 0)){
+			$status = $params["status"];
+			$query = $query." AND p.status = {$status}";
+		}
 		$query = $query." ORDER BY cv.data DESC";
 		return DB::select($query);
 	}

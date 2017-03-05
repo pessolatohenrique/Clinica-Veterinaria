@@ -59,4 +59,7 @@ class Cliente extends Model {
 	public function buscaPorCPF($cpf){
 		return DB::table("clientes")->where("cpf",$cpf)->first();
 	}
+	public function contaTotal(){
+		return DB::table("clientes")->count();
+	}
 }

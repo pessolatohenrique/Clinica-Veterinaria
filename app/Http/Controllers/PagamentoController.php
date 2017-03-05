@@ -25,4 +25,20 @@ class PagamentoController extends Controller {
 		$parametros["status"] = $request->input("status");
 		$pagamentoObj->atualiza($pagamento_id,$parametros);
 	}
+	public function criaRelatorioPDF(){
+		// $bin = PhantomInstaller\PhantomBinary::getBin();
+		// echo $bin;
+		// $conversor = new Converter();
+		// $conversor->setBinary('vendor/bin/phantomjs');
+
+		// $conversor->addPage("
+		// 	<html>
+		// 		<body>
+		// 			<h1>Título Teste</h1>
+		// 			<p>Aqui irá um texto explicativo</p>
+		// 			<p>Aqui irá uma tabela qualquer</p>
+		// 		</body>
+		// 	</html>
+		// ")->save("C:\xampp\htdocs\Projetos\ClinicaVeterinaria\public\relatorios");
+	}
 }

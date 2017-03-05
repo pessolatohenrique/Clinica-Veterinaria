@@ -54,4 +54,7 @@ class Exame extends Model {
 	public function exclui($exame_id){
 		return DB::table("exames")->where("id",$exame_id)->delete();
 	}
+	public function contaTotal($condicao,$valor){
+		return DB::table("exames")->where($condicao,$valor)->count();
+	}
 }

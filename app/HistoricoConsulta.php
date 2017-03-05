@@ -69,4 +69,8 @@ class HistoricoConsulta extends Model {
 	public function deleta($consulta_id){
 		DB::table("consultas_veterinario")->where("id",$consulta_id)->delete();
 	}
+	public function contaTotal($condicao,$valor){
+		$totalQtd = DB::table('consultas_veterinario')->where($condicao,$valor)->count();
+		return $totalQtd;
+	}
 }

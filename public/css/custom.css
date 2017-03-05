@@ -47,3 +47,40 @@
 .total_receber,.quantidade_receber{
 	font-weight: bold;
 }
+.destaquePainel{
+    font-size: 3em;
+    margin-bottom: -0.3em;
+}
+.panel{
+	margin-bottom: 0;
+}
+.panel-green{
+	background-color: #5cb85c;
+}
+.panel-yellow{
+	background-color: #f0ad4e;
+}
+.panel-red{
+	background-color: #d9534f;
+}
+.panel-green, .panel-yellow, .panel-red{
+	color: white;
+}
+.iconePrimary{
+	color: #337ab7;
+}
+.detalhesPainel > a:hover{
+	text-decoration: none;
+}
+.iconeGreen a{
+	color: #5cb85c;
+}
+.iconeYellow a{
+	color: #f0ad4e;
+}
+.iconeRed a{
+	color: #d9534f;
+}
+h1, h2,h3{
+	border-bottom: 1px solid #ccc;
+}
